@@ -78,8 +78,8 @@ const homeJsonLd = {
         email: 'hello@qivalabs.com',
       },
       sameAs: [
-        'https://linkedin.com/company/qivalabs',
-        'https://instagram.com/qivalabs',
+        'https://www.linkedin.com/company/qivalabs',
+        'https://www.instagram.com/qivalabs.ai/',
         'https://twitter.com/qivalabs',
       ],
     },
@@ -88,7 +88,7 @@ const homeJsonLd = {
       '@id': 'https://qivalabs.com/#localbusiness',
       name: 'QivaLabs LLP',
       url: 'https://qivalabs.com',
-      telephone: '+91-98765-43210',
+      telephone: '+91-72318-73730',
       priceRange: '₹₹',
       address: {
         '@type': 'PostalAddress',

@@ -15,8 +15,8 @@ const CONTACT_DETAILS = [
       </svg>
     ),
     label: 'Phone',
-    value: '+91 98765 43210',
-    href: 'tel:+919876543210',
+    value: '+91 72318 73730',
+    href: 'tel:+917231873730',
   },
   {
     icon: (
@@ -296,7 +296,7 @@ export default function ContactPage() {
                             type="tel"
                             value={form.phone}
                             onChange={handleChange}
-                            placeholder="+91 98765 43210"
+                            placeholder="+91 72318 73730"
                             style={inputStyle}
                           />
                         </div>
