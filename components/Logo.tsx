@@ -1,102 +1,79 @@
-'use client';
-
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 interface LogoProps {
+  size?: 'sm' | 'md' | 'lg';
+  showWordmark?: boolean;
+  href?: string;
   className?: string;
-  height?: number;
 }
 
-export default function Logo({ className = '', height = 36 }: LogoProps) {
-  const [src, setSrc] = useState<string | null>(null);
+const SIZES = {
+  sm: { mark: 28, text: 'text-lg' },
+  md: { mark: 36, text: 'text-xl' },
+  lg: { mark: 52, text: 'text-3xl' },
+};
 
-  useEffect(() => {
-    // Try SVG first, fall back to PNG
-    const svg = '/logo.svg';
-    const png = '/logo.png';
+export function LogoMark({ size = 36, className = '' }: { size?: number; className?: string }) {
+  return (
+    <svg
+      width={size}
+      height={Math.round(size * 1.2)}
+      viewBox="0 0 40 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="qiva-upper" x1="0" y1="0" x2="40" y2="24" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#0B9BAA" />
+          <stop offset="100%" stopColor="#16C4D6" />
+        </linearGradient>
+        <linearGradient id="qiva-lower" x1="0" y1="24" x2="40" y2="48" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#0B9BAA" />
+          <stop offset="100%" stopColor="#0B3A4A" />
+        </linearGradient>
+      </defs>
+      {/* Upper facet — bright teal */}
+      <polygon points="0,0 40,24 0,24" fill="url(#qiva-upper)" />
+      {/* Lower facet — deep petrol */}
+      <polygon points="0,24 40,24 0,48" fill="url(#qiva-lower)" />
+      {/* Silver-white inner catching-light facet */}
+      <polygon points="0,4 30,22 0,20" fill="#E8EEF0" opacity="0.22" />
+    </svg>
+  );
+}
 
-    const img = new window.Image();
-    img.onload = () => setSrc(svg);
-    img.onerror = () => {
-      const img2 = new window.Image();
-      img2.onload = () => setSrc(png);
-      img2.onerror = () => {
-        // Neither found
-        console.warn(
-          '[QivaLabs] Logo file not found. ' +
-          'Please add logo.svg (or logo.png) to the /public directory. ' +
-          'A placeholder is shown in its place.'
-        );
-        setSrc(null);
-      };
-      img2.src = png;
-    };
-    img.src = svg;
-  }, []);
+export default function Logo({
+  size = 'md',
+  showWordmark = true,
+  href = '/',
+  className = '',
+}: LogoProps) {
+  const { mark, text } = SIZES[size];
 
-  if (src === null && typeof window !== 'undefined') {
-    // Placeholder slot — clearly labelled
-    return (
-      /* <!-- LOGO PLACEHOLDER: replace by adding /public/logo.svg or /public/logo.png --> */
-      <div
-        className={`flex items-center gap-2 ${className}`}
-        title="Logo placeholder — add /public/logo.svg or /public/logo.png"
-        role="img"
-        aria-label="QivaLabs logo (placeholder)"
-      >
-        <div
-          className="flex items-center justify-center rounded-lg font-bold text-white text-sm"
+  const inner = (
+    <span className={`flex items-center gap-2.5 ${className}`}>
+      <LogoMark size={mark} />
+      {showWordmark && (
+        <span
+          className={`font-bold tracking-tight leading-none ${text}`}
           style={{
-            width: height,
-            height: height,
-            background: 'linear-gradient(135deg, #7C5CFF, #22D3EE)',
-            fontSize: Math.round(height * 0.44),
-            letterSpacing: '-0.03em',
+            fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif',
+            color: '#FFFFFF',
           }}
         >
-          Q
-        </div>
-        <span
-          className="font-heading font-bold tracking-tight"
-          style={{
-            fontSize: Math.round(height * 0.56),
-            background: 'linear-gradient(135deg, #F4F4F8, #A0A0B2)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}
-        >
-          QivaLabs
+          Qiva<span style={{ color: '#16C4D6' }}>Labs</span>
         </span>
-      </div>
-    );
-  }
+      )}
+    </span>
+  );
 
-  if (src === null) {
-    // SSR fallback (hydration-safe)
-    return (
-      <div className={`flex items-center gap-2 ${className}`} aria-label="QivaLabs">
-        <span
-          className="font-heading font-bold tracking-tight"
-          style={{ fontSize: Math.round(height * 0.56), color: '#F4F4F8' }}
-        >
-          QivaLabs
-        </span>
-      </div>
-    );
-  }
+  if (!href) return inner;
 
   return (
-    <div className={`flex items-center ${className}`}>
-      <Image
-        src={src}
-        alt="QivaLabs"
-        height={height}
-        width={height * 4}
-        style={{ height, width: 'auto', objectFit: 'contain' }}
-        priority
-      />
-    </div>
+    <Link href={href} className="flex items-center" aria-label="QivaLabs — Home">
+      {inner}
+    </Link>
   );
 }

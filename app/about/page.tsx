@@ -2,50 +2,65 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/ScrollReveal';
-import CTABand from '@/components/CTABand';
+import ScrollReveal, { StaggerReveal, StaggerItem } from '@/components/ScrollReveal';
+import SectionWrapper, { SectionHeader } from '@/components/SectionWrapper';
+import { LogoMark } from '@/components/Logo';
 
 export const metadata: Metadata = {
-  title: 'About Us — QivaLabs LLP | AI Business Solutions Partner, Udaipur',
+  title: 'About QivaLabs — Full-Service IT Company in Udaipur, India',
   description:
-    'QivaLabs LLP is a DPIIT-recognised GenAI startup incorporated in Udaipur, Rajasthan in February 2026. Founded by Asad Sheikh (CEO), Rajamuddin (CTO), and Arman Hussain (COO).',
+    'Learn about QivaLabs LLP — our story, our founders, and our mission to deliver world-class software and digital solutions from Udaipur, Rajasthan to businesses across India.',
   openGraph: {
-    title: 'About QivaLabs — AI Business Solutions Partner, Udaipur, Rajasthan',
-    description:
-      'From mandi bots to a full AI business solutions partner — the story of QivaLabs LLP and the team building serious software for Indian businesses.',
+    title: 'About QivaLabs — Full-Service IT Company in Udaipur',
+    description: 'Meet the team behind QivaLabs LLP and learn about our story, mission, and values.',
   },
 };
 
 const FOUNDERS = [
   {
     name: 'Asad Sheikh',
-    role: 'CEO & Co-Founder',
+    role: 'CEO & Designated Partner',
+    description:
+      'Asad leads QivaLabs\' commercial strategy and client relationships. With a background in business development and technology, he drives the firm\'s growth initiatives and ensures that every engagement is aligned with measurable client outcomes.',
     initials: 'AS',
-    gradient: 'linear-gradient(135deg, #7C5CFF, #A78BFA)',
-    bio: 'Leads product vision, customer discovery, and go-to-market strategy. Asad drives the commercial relationships that bring QivaLabs products into real mandi businesses and enterprise support teams.',
   },
   {
     name: 'Rajamuddin',
-    role: 'CTO & Co-Founder',
-    initials: 'RJ',
-    gradient: 'linear-gradient(135deg, #22D3EE, #7C5CFF)',
-    bio: 'Architects the AI infrastructure powering Mandi WhatsApp Automation, the CRM triage layer, and the WaitJI AI platform. Rajamuddin is responsible for the reliability and intelligence of every product we ship.',
+    role: 'CTO & Designated Partner',
+    description:
+      'Rajamuddin heads the technical architecture and engineering practice at QivaLabs. He oversees the design and delivery of all software products and platforms — ensuring technical excellence, scalability, and long-term maintainability across every project.',
+    initials: 'R',
   },
   {
     name: 'Arman Hussain',
-    role: 'COO & Co-Founder',
+    role: 'COO',
+    description:
+      'Arman manages QivaLabs\' operations, project delivery, and quality assurance. He ensures that projects are delivered on-time, within scope, and to the standard clients expect — coordinating teams, timelines, and client communication across all active engagements.',
     initials: 'AH',
-    gradient: 'linear-gradient(135deg, #FF7849, #FFB347)',
-    bio: 'Drives operations, onboarding, and customer success. Arman ensures that every business that signs up with QivaLabs is live, running, and saving money within days of enrolment.',
   },
 ];
 
-const MILESTONES = [
-  { date: 'Feb 2026', event: 'QivaLabs LLP incorporated in Udaipur, Rajasthan (LLPIN: ACV-6746)' },
-  { date: '2026', event: 'DPIIT Startup India recognition received (DIPP247112)' },
-  { date: '2026', event: 'Mandi WhatsApp Automation (QIVA) launched for wholesale trade businesses' },
-  { date: '2026', event: 'AI CRM Automation product developed for support and sales teams' },
-  { date: '2026', event: 'WaitJI AI launched as India\'s first AI ad marketplace for dev-tool wait states' },
+const VALUES = [
+  {
+    icon: '🎯',
+    title: 'Outcomes over activity',
+    description: 'We measure our work by the business results it produces — not the hours logged or the features shipped.',
+  },
+  {
+    icon: '🔍',
+    title: 'Honest advice',
+    description: 'We tell clients what they need to hear, not what they want to hear. Independent recommendations, always.',
+  },
+  {
+    icon: '⚡',
+    title: 'Built to last',
+    description: 'Every system we build is designed for long-term maintainability. We write code that the next engineer can understand.',
+  },
+  {
+    icon: '🤝',
+    title: 'Partnership mindset',
+    description: 'Our best client relationships are long-term. We invest in understanding your business, not just your current ticket.',
+  },
 ];
 
 const aboutJsonLd = {
@@ -53,7 +68,6 @@ const aboutJsonLd = {
   '@type': 'AboutPage',
   name: 'About QivaLabs LLP',
   url: 'https://qivalabs.com/about',
-  description: 'QivaLabs LLP is a DPIIT-recognised GenAI startup based in Udaipur, Rajasthan, India.',
   breadcrumb: {
     '@type': 'BreadcrumbList',
     itemListElement: [
@@ -73,178 +87,265 @@ export default function AboutPage() {
 
       <Navbar />
 
-      <main className="pt-28 pb-0">
-
-        {/* Page header */}
-        <section className="relative py-16 overflow-hidden">
+      <main className="pt-16">
+        {/* Hero */}
+        <section
+          className="relative py-20 overflow-hidden"
+          style={{ backgroundColor: '#0A1628' }}
+        >
           <div
-            className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none"
+            className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
             style={{
-              background: 'radial-gradient(circle, rgba(124, 92, 255, 0.08) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(11, 155, 170, 0.08) 0%, transparent 70%)',
               filter: 'blur(60px)',
             }}
             aria-hidden="true"
           />
-
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav className="flex items-center gap-2 text-xs text-text-muted mb-8 font-mono-accent" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-text-primary transition-colors">Home</Link>
+            <nav className="flex items-center gap-2 text-xs mb-8" style={{ color: '#8BAFC0' }} aria-label="Breadcrumb">
+              <Link href="/" style={{ color: '#8BAFC0' }}>Home</Link>
               <span>/</span>
-              <span className="text-text-primary">About</span>
+              <span style={{ color: '#C9D6D9' }}>About</span>
             </nav>
-
             <ScrollReveal>
-              <span className="tag mb-4 inline-flex">About QivaLabs</span>
+              <span className="tag mb-4 inline-flex">About us</span>
               <h1
-                className="font-heading font-bold text-text-primary mb-6 leading-tight"
-                style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)' }}
+                className="font-bold leading-tight mb-6"
+                style={{
+                  fontFamily: 'var(--font-space-grotesk)',
+                  fontSize: 'clamp(2.2rem, 5vw, 3.6rem)',
+                  color: '#ffffff',
+                }}
               >
-                From mandi bots to a full{' '}
-                <span className="gradient-text-violet-cyan">AI business solutions</span>{' '}
-                partner.
+                Built in Udaipur.{' '}
+                <span
+                  style={{
+                    background: 'linear-gradient(135deg, #0B9BAA, #16C4D6)',
+                    WebkitBackgroundClip: 'text',
+                    backgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  Trusted across India.
+                </span>
               </h1>
-              <p className="text-text-muted text-xl leading-relaxed max-w-3xl">
-                QivaLabs started with a single observation: Indian wholesale businesses were still managing
-                customer relationships over personal WhatsApp — and burning ₹10,000–₹15,000/month on a
-                person to do it. We built the AI to replace that cost. Then we built a CRM layer for larger
-                teams. Then WaitJI AI. Now we&apos;re a three-product company. Here&apos;s the story.
+              <p className="text-xl leading-relaxed max-w-3xl" style={{ color: '#8BAFC0' }}>
+                QivaLabs LLP is a full-service software and digital solutions company based in
+                Udaipur, Rajasthan. We work with businesses of all sizes — from local SMEs to
+                multi-city enterprises — delivering technology that makes a measurable difference.
               </p>
             </ScrollReveal>
           </div>
         </section>
 
-        {/* Company facts */}
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-2 gap-12 items-start">
+        {/* Our story */}
+        <SectionWrapper style={{ backgroundColor: '#0D2035' } as React.CSSProperties}>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <ScrollReveal>
+              <div
+                className="rounded-2xl p-12 flex items-center justify-center"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(11, 155, 170, 0.1) 0%, rgba(11, 58, 74, 0.4) 100%)',
+                  border: '1px solid rgba(11, 155, 170, 0.2)',
+                  minHeight: '280px',
+                }}
+              >
+                <LogoMark size={140} />
+              </div>
+            </ScrollReveal>
 
-              <ScrollReveal>
-                <h2 className="font-heading font-bold text-3xl text-text-primary mb-6">
-                  The company
-                </h2>
-                <div className="space-y-5 text-text-muted leading-relaxed">
-                  <p>
-                    QivaLabs LLP (LLPIN: ACV-6746) was incorporated in February 2026 in Udaipur, Rajasthan.
-                    We are a DPIIT-recognised startup (DIPP247112) focused on building AI automation products
-                    for Indian businesses across mandi trade, enterprise support teams, and the developer tooling ecosystem.
-                  </p>
-                  <p>
-                    We chose Udaipur deliberately — not as a cost-saving move, but because we believe the next
-                    wave of Indian tech should be built from Tier 2 cities, not just Bengaluru and Mumbai.
-                    We understand what mandi culture looks like from the inside. We know how a kirana owner
-                    manages credit. We know the difference between a Rajasthani vendor relationship and a
-                    Mumbai supply chain. That context is in our products.
-                  </p>
-                  <p>
-                    Our positioning: <strong className="text-text-primary">Your AI Business Solutions Partner.</strong>{' '}
-                    That means we don&apos;t sell you a chatbot and walk away. We build AI that runs real
-                    business workflows — customer communication, supplier management, inbound triage — and we
-                    stay accountable to outcomes, not just deliverables.
-                  </p>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={0.15}>
-                <div className="glass rounded-2xl p-8">
-                  <h3 className="font-heading font-bold text-text-primary text-xl mb-6">Company details</h3>
-                  <dl className="flex flex-col gap-4">
-                    {[
-                      { label: 'Legal name', value: 'QivaLabs LLP' },
-                      { label: 'LLPIN', value: 'ACV-6746' },
-                      { label: 'DPIIT Recognition', value: 'DIPP247112' },
-                      { label: 'Incorporated', value: 'February 2026' },
-                      { label: 'Registered office', value: 'Udaipur, Rajasthan, India' },
-                      { label: 'Phone', value: '+91 7231 873 730' },
-                      { label: 'Email', value: 'sales@qivalabs.com' },
-                    ].map(({ label, value }) => (
-                      <div key={label} className="flex justify-between gap-4 text-sm border-b border-[rgba(124,92,255,0.1)] pb-3 last:border-0 last:pb-0">
-                        <dt className="text-text-muted">{label}</dt>
-                        <dd className="text-text-primary font-medium text-right">{value}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-              </ScrollReveal>
-            </div>
+            <ScrollReveal delay={0.1}>
+              <h2
+                className="font-bold mb-5"
+                style={{
+                  fontFamily: 'var(--font-space-grotesk)',
+                  fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
+                  color: '#ffffff',
+                }}
+              >
+                Our story
+              </h2>
+              <div className="space-y-4 text-base leading-relaxed" style={{ color: '#8BAFC0' }}>
+                <p>
+                  QivaLabs was born from a simple observation: businesses in India need reliable,
+                  high-quality technology partners who understand their context — their market,
+                  their constraints, and their ambitions — not just generic development shops that
+                  treat every project as a ticket.
+                </p>
+                <p>
+                  We started with a focus on AI and automation, helping businesses in Udaipur and
+                  Rajasthan automate repetitive workflows and unlock the value locked in their data.
+                  Over time, our clients needed more: websites, mobile apps, e-commerce platforms,
+                  cloud infrastructure, digital marketing. We built the capability to serve all of
+                  it — under one roof, from one team that knows your business.
+                </p>
+                <p>
+                  Today, QivaLabs is a full-service IT and digital solutions company with expertise
+                  spanning software development, AI integration, digital marketing, cloud
+                  infrastructure, and business consulting. Our mission hasn&apos;t changed: make
+                  great technology accessible to every business that&apos;s serious about growth.
+                </p>
+              </div>
+            </ScrollReveal>
           </div>
-        </section>
-
-        <div className="section-divider" aria-hidden="true" />
+        </SectionWrapper>
 
         {/* Founders */}
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ScrollReveal className="text-center mb-12">
-              <p className="text-accent-coral text-sm font-semibold uppercase tracking-[0.15em] mb-3 font-mono-accent">
-                The Team
+        <SectionWrapper>
+          <SectionHeader
+            tag="Our team"
+            h2="Meet the founders"
+            description="QivaLabs is led by three partners who bring together commercial strategy, technical architecture, and operational excellence."
+          />
+
+          <StaggerReveal className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {FOUNDERS.map((founder) => (
+              <StaggerItem key={founder.name}>
+                <div
+                  className="p-6 rounded-xl card-angular h-full"
+                  style={{
+                    backgroundColor: '#0F2742',
+                    border: '1px solid rgba(11, 155, 170, 0.18)',
+                  }}
+                >
+                  {/* Avatar */}
+                  <div
+                    className="w-14 h-14 rounded-xl flex items-center justify-center text-xl font-bold mb-5"
+                    style={{
+                      background: 'linear-gradient(135deg, #0B9BAA, #16C4D6)',
+                      color: '#0A1628',
+                      fontFamily: 'var(--font-space-grotesk)',
+                    }}
+                  >
+                    {founder.initials}
+                  </div>
+                  <h3
+                    className="font-bold mb-1 text-lg"
+                    style={{ fontFamily: 'var(--font-space-grotesk)', color: '#ffffff' }}
+                  >
+                    {founder.name}
+                  </h3>
+                  <p className="text-sm mb-4" style={{ color: '#16C4D6' }}>
+                    {founder.role}
+                  </p>
+                  <p className="text-sm leading-relaxed" style={{ color: '#8BAFC0' }}>
+                    {founder.description}
+                  </p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerReveal>
+        </SectionWrapper>
+
+        {/* Mission */}
+        <SectionWrapper style={{ backgroundColor: '#0D2035' } as React.CSSProperties}>
+          <div className="max-w-4xl mx-auto text-center">
+            <ScrollReveal>
+              <span className="tag mb-4 inline-flex">Mission</span>
+              <h2
+                className="font-bold mb-6"
+                style={{
+                  fontFamily: 'var(--font-space-grotesk)',
+                  fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
+                  color: '#ffffff',
+                }}
+              >
+                Make world-class software accessible{' '}
+                <span
+                  style={{
+                    background: 'linear-gradient(135deg, #0B9BAA, #16C4D6)',
+                    WebkitBackgroundClip: 'text',
+                    backgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  to every serious business.
+                </span>
+              </h2>
+              <p className="text-xl leading-relaxed" style={{ color: '#8BAFC0' }}>
+                We believe that the quality of software your business runs on shouldn&apos;t be
+                determined by its size or location. QivaLabs brings the technical standards and
+                delivery disciplines of tier-1 technology firms to businesses in Udaipur,
+                Rajasthan, and across India.
               </p>
-              <h2 className="font-heading font-bold text-4xl md:text-5xl text-text-primary leading-tight">
-                Three founders who understand<br />the problem from the inside.
-              </h2>
             </ScrollReveal>
-
-            <StaggerContainer className="grid md:grid-cols-3 gap-6" staggerDelay={0.12}>
-              {FOUNDERS.map((founder) => (
-                <StaggerItem key={founder.name}>
-                  <div className="glass rounded-2xl p-8 text-center flex flex-col items-center gap-5 h-full">
-                    <div
-                      className="w-20 h-20 rounded-2xl flex items-center justify-center text-2xl font-bold text-white"
-                      style={{ background: founder.gradient }}
-                    >
-                      {founder.initials}
-                    </div>
-                    <div>
-                      <h3 className="font-heading font-bold text-text-primary text-xl">{founder.name}</h3>
-                      <p className="text-accent-violet text-sm font-medium mt-1">{founder.role}</p>
-                    </div>
-                    <p className="text-text-muted text-sm leading-relaxed">{founder.bio}</p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
           </div>
-        </section>
+        </SectionWrapper>
 
-        <div className="section-divider" aria-hidden="true" />
+        {/* Values */}
+        <SectionWrapper>
+          <SectionHeader
+            tag="Values"
+            h2="How we work"
+          />
+          <StaggerReveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {VALUES.map((v) => (
+              <StaggerItem key={v.title}>
+                <div
+                  className="p-5 rounded-xl h-full"
+                  style={{
+                    backgroundColor: 'rgba(11, 155, 170, 0.06)',
+                    border: '1px solid rgba(11, 155, 170, 0.15)',
+                  }}
+                >
+                  <span className="text-2xl mb-3 block">{v.icon}</span>
+                  <h3
+                    className="font-semibold mb-2 text-base"
+                    style={{ fontFamily: 'var(--font-space-grotesk)', color: '#ffffff' }}
+                  >
+                    {v.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: '#8BAFC0' }}>
+                    {v.description}
+                  </p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerReveal>
+        </SectionWrapper>
 
-        {/* Timeline */}
-        <section className="py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ScrollReveal className="text-center mb-12">
-              <h2 className="font-heading font-bold text-3xl text-text-primary">
-                Where we&apos;ve been. Where we&apos;re going.
-              </h2>
-            </ScrollReveal>
-
-            <div className="relative flex flex-col gap-0">
-              <div
-                className="absolute left-[23px] top-8 bottom-8 w-px"
-                style={{ background: 'linear-gradient(to bottom, #7C5CFF, #22D3EE, #FF7849)' }}
-                aria-hidden="true"
-              />
-
-              {MILESTONES.map((m, i) => (
-                <ScrollReveal key={i} delay={i * 0.1}>
-                  <div className="flex gap-6 py-5">
-                    <div
-                      className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-lg z-10"
-                      style={{ background: '#0B0B12', border: '2px solid rgba(124,92,255,0.4)' }}
-                    >
-                      🚀
-                    </div>
-                    <div className="pt-2">
-                      <span className="text-xs font-bold text-accent-violet font-mono-accent">{m.date}</span>
-                      <p className="text-text-primary text-sm mt-1 leading-relaxed">{m.event}</p>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
+        {/* CTA */}
+        <SectionWrapper style={{ backgroundColor: '#0D2035' } as React.CSSProperties}>
+          <ScrollReveal className="text-center">
+            <h2
+              className="font-bold mb-4"
+              style={{
+                fontFamily: 'var(--font-space-grotesk)',
+                fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
+                color: '#ffffff',
+              }}
+            >
+              Let&apos;s build something together
+            </h2>
+            <p className="text-lg mb-8 max-w-xl mx-auto" style={{ color: '#8BAFC0' }}>
+              We&apos;d love to hear about your business and how QivaLabs might help. No sales
+              pressure — just an honest conversation.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-sm"
+                style={{
+                  background: 'linear-gradient(135deg, #0B9BAA, #16C4D6)',
+                  color: '#0A1628',
+                }}
+              >
+                Get in touch
+              </Link>
+              <Link
+                href="/portfolio"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-sm"
+                style={{
+                  backgroundColor: 'rgba(11, 155, 170, 0.1)',
+                  color: '#C9D6D9',
+                  border: '1px solid rgba(11, 155, 170, 0.25)',
+                }}
+              >
+                View our work
+              </Link>
             </div>
-          </div>
-        </section>
-
-        <div className="section-divider" aria-hidden="true" />
-        <CTABand />
+          </ScrollReveal>
+        </SectionWrapper>
       </main>
 
       <Footer />

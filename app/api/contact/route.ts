@@ -2,9 +2,10 @@ import { NextRequest } from 'next/server';
 
 interface ContactPayload {
   name: string;
-  business?: string;
   email?: string;
-  phone: string;
+  phone?: string;
+  company?: string;
+  service?: string;
   message: string;
 }
 
@@ -12,9 +13,9 @@ export async function POST(request: NextRequest) {
   try {
     const body: ContactPayload = await request.json();
 
-    if (!body.name?.trim() || !body.phone?.trim()) {
+    if (!body.name?.trim() || !body.message?.trim()) {
       return Response.json(
-        { error: 'Name and phone are required.' },
+        { error: 'Name and message are required.' },
         { status: 400 }
       );
     }
@@ -22,10 +23,11 @@ export async function POST(request: NextRequest) {
     const contact = {
       type: 'contact-form',
       name: body.name.trim(),
-      business: body.business?.trim() ?? '',
       email: body.email?.trim() ?? '',
-      phone: body.phone.trim(),
-      message: body.message?.trim() ?? '',
+      phone: body.phone?.trim() ?? '',
+      company: body.company?.trim() ?? '',
+      service: body.service?.trim() ?? '',
+      message: body.message.trim(),
       receivedAt: new Date().toISOString(),
     };
 

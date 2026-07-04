@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
+import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({
@@ -12,35 +12,29 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-space-grotesk',
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-jetbrains-mono',
-  weight: ['400', '500', '700'],
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: 'QivaLabs — Your AI Business Solutions Partner',
+    default: 'QivaLabs — Full-Service Software & Digital Solutions | Udaipur',
     template: '%s | QivaLabs',
   },
   description:
-    'QivaLabs builds AI systems that run your business — not just chatbots. Mandi WhatsApp Automation, AI CRM Automation, and WaitJI AI. Udaipur, Rajasthan.',
+    'QivaLabs LLP is a full-service IT and software company in Udaipur, Rajasthan. We build custom software, mobile apps, websites, e-commerce platforms, and AI automation solutions across India.',
   keywords: [
-    'AI business solutions partner India',
-    'mandi WhatsApp automation',
-    'WhatsApp AI bot for mandi business',
-    'AI staff replacement India',
-    'wholesale trade WhatsApp bot',
-    'AI CRM automation India',
-    'AI email triage for support teams',
-    'AI layer on top of CRM',
+    'software company Udaipur',
+    'IT solutions Udaipur',
+    'custom software development India',
+    'website design Udaipur',
+    'mobile app development Rajasthan',
+    'digital marketing Udaipur',
     'QivaLabs',
-    'Udaipur AI startup',
-    'Rajasthan SaaS company',
-    'WaitJI AI',
+    'QivaLabs LLP',
+    'IT company Udaipur',
+    'software development Rajasthan',
+    'AI automation India',
+    'cloud solutions Udaipur',
   ],
   authors: [{ name: 'QivaLabs LLP' }],
   creator: 'QivaLabs LLP',
@@ -51,35 +45,47 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: 'https://qivalabs.com',
     siteName: 'QivaLabs',
-    title: 'QivaLabs — Your AI Business Solutions Partner',
+    title: 'QivaLabs — Full-Service Software & Digital Solutions',
     description:
-      'We build AI systems that run your business — not just chatbots. Three products, one partner.',
+      'Custom software, mobile apps, AI automation, and digital solutions from QivaLabs LLP — based in Udaipur, serving businesses across India.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'QivaLabs — Your AI Business Solutions Partner',
+        alt: 'QivaLabs — Full-Service Software & Digital Solutions',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'QivaLabs — Your AI Business Solutions Partner',
+    title: 'QivaLabs — Full-Service Software & Digital Solutions',
     description:
-      'We build AI systems that run your business — not just chatbots.',
+      'Custom software, mobile apps, AI automation, and digital solutions from QivaLabs LLP — Udaipur, India.',
     images: ['/og-image.png'],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+    },
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
-      <body className="bg-base text-text-primary font-body min-h-screen overflow-x-hidden">
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <body
+        className="min-h-screen overflow-x-hidden"
+        style={{
+          backgroundColor: '#0A1628',
+          color: '#C9D6D9',
+          fontFamily: 'var(--font-inter), system-ui, sans-serif',
+        }}
+      >
         {children}
       </body>
     </html>
