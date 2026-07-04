@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollReveal, { StaggerReveal, StaggerItem } from '@/components/ScrollReveal';
 import SectionWrapper, { SectionHeader } from '@/components/SectionWrapper';
+import FounderCards from '@/components/FounderCards';
 import { LogoMark } from '@/components/Logo';
 
 export const metadata: Metadata = {
@@ -198,43 +199,7 @@ export default function AboutPage() {
             description="QivaLabs is led by three partners who bring together commercial strategy, technical architecture, and operational excellence."
           />
 
-          <StaggerReveal className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {FOUNDERS.map((founder) => (
-              <StaggerItem key={founder.name}>
-                <div
-                  className="p-6 rounded-xl card-angular h-full"
-                  style={{
-                    backgroundColor: '#0F2742',
-                    border: '1px solid rgba(11, 155, 170, 0.18)',
-                  }}
-                >
-                  {/* Avatar */}
-                  <div
-                    className="w-14 h-14 rounded-xl flex items-center justify-center text-xl font-bold mb-5"
-                    style={{
-                      background: 'linear-gradient(135deg, #0B9BAA, #16C4D6)',
-                      color: '#0A1628',
-                      fontFamily: 'var(--font-space-grotesk)',
-                    }}
-                  >
-                    {founder.initials}
-                  </div>
-                  <h3
-                    className="font-bold mb-1 text-lg"
-                    style={{ fontFamily: 'var(--font-space-grotesk)', color: '#ffffff' }}
-                  >
-                    {founder.name}
-                  </h3>
-                  <p className="text-sm mb-4" style={{ color: '#16C4D6' }}>
-                    {founder.role}
-                  </p>
-                  <p className="text-sm leading-relaxed" style={{ color: '#8BAFC0' }}>
-                    {founder.description}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerReveal>
+          <FounderCards founders={FOUNDERS} />
         </SectionWrapper>
 
         {/* Mission */}

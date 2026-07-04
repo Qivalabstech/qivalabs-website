@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ScrollReveal, { StaggerReveal, StaggerItem } from '@/components/ScrollReveal';
+import ScrollReveal from '@/components/ScrollReveal';
 import SectionWrapper from '@/components/SectionWrapper';
-import { SERVICES, SERVICE_CATEGORIES, getServicesByCategory } from '@/lib/services-data';
+import MotionCard from '@/components/MotionCard';
+import { SERVICE_CATEGORIES, getServicesByCategory } from '@/lib/services-data';
 
 export const metadata: Metadata = {
   title: 'All Services — Software, Digital & IT Solutions | QivaLabs',
@@ -128,39 +129,18 @@ export default function ServicesPage() {
                 </p>
               </ScrollReveal>
 
-              <StaggerReveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {services.map((service) => (
-                  <StaggerItem key={service.slug}>
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className="flex items-start gap-4 p-5 rounded-xl h-full card-angular hover-card"
-                      style={{
-                        backgroundColor: 'rgba(15, 39, 66, 0.7)',
-                        border: '1px solid rgba(11, 155, 170, 0.15)',
-                      }}
-                    >
-                      <span className="text-2xl flex-shrink-0 mt-0.5">{service.icon}</span>
-                      <div>
-                        <h3
-                          className="font-semibold mb-1.5 text-sm"
-                          style={{ fontFamily: 'var(--font-space-grotesk)', color: '#ffffff' }}
-                        >
-                          {service.title}
-                        </h3>
-                        <p className="text-xs leading-relaxed" style={{ color: '#8BAFC0' }}>
-                          {service.tagline}
-                        </p>
-                        <span
-                          className="inline-flex items-center gap-1 mt-3 text-xs font-medium"
-                          style={{ color: '#0B9BAA' }}
-                        >
-                          Details →
-                        </span>
-                      </div>
-                    </Link>
-                  </StaggerItem>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {services.map((service, i) => (
+                  <MotionCard
+                    key={service.slug}
+                    href={`/services/${service.slug}`}
+                    icon={service.icon}
+                    title={service.title}
+                    tagline={service.tagline}
+                    index={i}
+                  />
                 ))}
-              </StaggerReveal>
+              </div>
             </SectionWrapper>
           );
         })}

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
+import CursorGlow from '@/components/CursorGlow';
 import './globals.css';
 
 const inter = Inter({
@@ -86,6 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           fontFamily: 'var(--font-inter), system-ui, sans-serif',
         }}
       >
+        <CursorGlow />
         {children}
       </body>
     </html>

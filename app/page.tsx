@@ -4,9 +4,10 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollReveal, { StaggerReveal, StaggerItem } from '@/components/ScrollReveal';
 import SectionWrapper, { SectionHeader } from '@/components/SectionWrapper';
-import GeometricBackground from '@/components/GeometricBackground';
 import { LogoMark } from '@/components/Logo';
-import AnimatedCounter from '@/components/AnimatedCounter';
+import HeroSection from '@/components/HeroSection';
+import MarqueeStrip from '@/components/MarqueeStrip';
+import MotionCard from '@/components/MotionCard';
 import { getFeaturedServices, SERVICES } from '@/lib/services-data';
 
 export const metadata: Metadata = {
@@ -16,16 +17,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'QivaLabs — Full-Service Software & Digital Solutions | Udaipur',
     description:
-      'Custom software, mobile apps, AI automation, and digital marketing from QivaLabs LLP — Udaipur\'s full-service IT partner.',
+      "Custom software, mobile apps, AI automation, and digital marketing from QivaLabs LLP — Udaipur's full-service IT partner.",
   },
 };
-
-const STATS = [
-  { value: 5, suffix: '+', label: 'Years experience' },
-  { value: 60, suffix: '+', label: 'Projects delivered' },
-  { value: 31, suffix: '', label: 'Services offered' },
-  { value: 100, suffix: '%', label: 'Client satisfaction' },
-];
 
 const DIFFERENTIATORS = [
   {
@@ -76,6 +70,7 @@ const homeJsonLd = {
         '@type': 'ContactPoint',
         contactType: 'customer service',
         email: 'hello@qivalabs.com',
+        telephone: '+91-72318-73730',
       },
       sameAs: [
         'https://www.linkedin.com/company/qivalabs',
@@ -126,117 +121,13 @@ export default function HomePage() {
       <Navbar />
 
       <main>
-        {/* ── Hero ──────────────────────────────────────────────────── */}
-        <section
-          className="relative min-h-screen flex flex-col justify-center overflow-hidden"
-          style={{ backgroundColor: '#0A1628' }}
-        >
-          <GeometricBackground />
+        {/* ── Hero (GSAP animated) ───────────────────────────────── */}
+        <HeroSection />
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
-            <div className="max-w-4xl">
-              <ScrollReveal delay={0.05}>
-                <span className="tag mb-6 inline-flex">Udaipur, Rajasthan · India</span>
-              </ScrollReveal>
+        {/* ── Services Marquee ──────────────────────────────────── */}
+        <MarqueeStrip />
 
-              <ScrollReveal delay={0.12}>
-                <h1
-                  className="font-bold leading-tight mb-6"
-                  style={{
-                    fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif',
-                    fontSize: 'clamp(2.4rem, 6vw, 4.2rem)',
-                    color: '#ffffff',
-                  }}
-                >
-                  End-to-End Software{' '}
-                  <span
-                    style={{
-                      background: 'linear-gradient(135deg, #0B9BAA 0%, #16C4D6 100%)',
-                      WebkitBackgroundClip: 'text',
-                      backgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                    }}
-                  >
-                    &amp; Digital Solutions
-                  </span>
-                </h1>
-              </ScrollReveal>
-
-              <ScrollReveal delay={0.2}>
-                <p
-                  className="text-xl leading-relaxed mb-10 max-w-2xl"
-                  style={{ color: '#8BAFC0' }}
-                >
-                  From custom software and mobile apps to AI automation and digital marketing —
-                  QivaLabs is your full-service IT partner for building, automating, and scaling
-                  your business.
-                </p>
-              </ScrollReveal>
-
-              <ScrollReveal delay={0.28}>
-                <div className="flex flex-wrap gap-4">
-                  <Link
-                    href="/services"
-                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-sm transition-all"
-                    style={{
-                      background: 'linear-gradient(135deg, #0B9BAA, #16C4D6)',
-                      color: '#0A1628',
-                      boxShadow: '0 0 24px rgba(22, 196, 214, 0.3)',
-                    }}
-                  >
-                    Explore our services
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-sm transition-all"
-                    style={{
-                      backgroundColor: 'rgba(11, 155, 170, 0.12)',
-                      color: '#16C4D6',
-                      border: '1px solid rgba(11, 155, 170, 0.35)',
-                    }}
-                  >
-                    Get a free quote
-                  </Link>
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
-
-          {/* Stats bar */}
-          <div
-            className="relative z-10 w-full"
-            style={{ borderTop: '1px solid rgba(11, 155, 170, 0.15)' }}
-          >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {STATS.map(({ value, suffix, label }) => (
-                  <div key={label} className="text-center">
-                    <div
-                      className="text-3xl font-bold mb-1"
-                      style={{
-                        fontFamily: 'var(--font-space-grotesk)',
-                        background: 'linear-gradient(135deg, #0B9BAA, #16C4D6)',
-                        WebkitBackgroundClip: 'text',
-                        backgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                      }}
-                    >
-                      <AnimatedCounter to={value} suffix={suffix} />
-                    </div>
-                    <div className="text-xs uppercase tracking-wider" style={{ color: '#8BAFC0' }}>
-                      {label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── Featured Services ─────────────────────────────────────── */}
+        {/* ── Featured Services ─────────────────────────────────── */}
         <SectionWrapper style={{ backgroundColor: '#0D2035' } as React.CSSProperties}>
           <SectionHeader
             tag="What we build"
@@ -244,45 +135,23 @@ export default function HomePage() {
             description="We cover the full technology and digital spectrum — so your growth isn't limited by needing multiple vendors."
           />
 
-          <StaggerReveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
-            {featured.map((service) => (
-              <StaggerItem key={service.slug}>
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="block p-6 rounded-xl card-angular card-glow h-full"
-                  style={{
-                    backgroundColor: '#0F2742',
-                    border: '1px solid rgba(11, 155, 170, 0.18)',
-                  }}
-                >
-                  <span className="text-3xl mb-4 block">{service.icon}</span>
-                  <h3
-                    className="text-lg font-semibold mb-2"
-                    style={{ fontFamily: 'var(--font-space-grotesk)', color: '#ffffff' }}
-                  >
-                    {service.shortTitle}
-                  </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#8BAFC0' }}>
-                    {service.tagline}
-                  </p>
-                  <span
-                    className="inline-flex items-center gap-1 mt-4 text-sm font-medium"
-                    style={{ color: '#0B9BAA' }}
-                  >
-                    Learn more
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </Link>
-              </StaggerItem>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+            {featured.map((service, i) => (
+              <MotionCard
+                key={service.slug}
+                href={`/services/${service.slug}`}
+                icon={service.icon}
+                title={service.shortTitle}
+                tagline={service.tagline}
+                index={i}
+              />
             ))}
-          </StaggerReveal>
+          </div>
 
           <ScrollReveal className="text-center">
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-sm transition-all"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-sm transition-all hover-card"
               style={{
                 backgroundColor: 'rgba(11, 155, 170, 0.12)',
                 color: '#16C4D6',
@@ -297,7 +166,7 @@ export default function HomePage() {
           </ScrollReveal>
         </SectionWrapper>
 
-        {/* ── Why QivaLabs ──────────────────────────────────────────── */}
+        {/* ── Why QivaLabs ──────────────────────────────────────── */}
         <SectionWrapper>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal>
@@ -333,7 +202,7 @@ export default function HomePage() {
               {DIFFERENTIATORS.map((d) => (
                 <StaggerItem key={d.title}>
                   <div
-                    className="p-5 rounded-xl h-full"
+                    className="p-5 rounded-xl h-full hover-card"
                     style={{
                       backgroundColor: 'rgba(11, 155, 170, 0.06)',
                       border: '1px solid rgba(11, 155, 170, 0.15)',
@@ -356,13 +225,10 @@ export default function HomePage() {
           </div>
         </SectionWrapper>
 
-        {/* ── About teaser ──────────────────────────────────────────── */}
-        <SectionWrapper
-          style={{ backgroundColor: '#0D2035' } as React.CSSProperties}
-        >
+        {/* ── About teaser ──────────────────────────────────────── */}
+        <SectionWrapper style={{ backgroundColor: '#0D2035' } as React.CSSProperties}>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal>
-              {/* Large logo mark as visual element */}
               <div
                 className="rounded-2xl p-12 flex items-center justify-center"
                 style={{
@@ -409,7 +275,7 @@ export default function HomePage() {
               </p>
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-sm transition-all"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-sm btn-glow"
                 style={{
                   background: 'linear-gradient(135deg, #0B9BAA, #16C4D6)',
                   color: '#0A1628',
@@ -424,7 +290,7 @@ export default function HomePage() {
           </div>
         </SectionWrapper>
 
-        {/* ── CTA Band ──────────────────────────────────────────────── */}
+        {/* ── CTA Band ──────────────────────────────────────────── */}
         <SectionWrapper>
           <ScrollReveal>
             <div
@@ -433,7 +299,6 @@ export default function HomePage() {
                 background: 'linear-gradient(135deg, #0B3A4A 0%, #0B9BAA 50%, #0B3A4A 100%)',
               }}
             >
-              {/* Geometric overlay */}
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
@@ -459,7 +324,7 @@ export default function HomePage() {
                 <div className="flex flex-wrap gap-4 justify-center">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-sm"
+                    className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-sm btn-glow"
                     style={{ backgroundColor: '#0A1628', color: '#16C4D6' }}
                   >
                     Start the conversation
@@ -470,7 +335,11 @@ export default function HomePage() {
                   <Link
                     href="/services"
                     className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-sm"
-                    style={{ backgroundColor: 'rgba(10, 22, 40, 0.4)', color: '#E8EEF0', border: '1px solid rgba(232, 238, 240, 0.2)' }}
+                    style={{
+                      backgroundColor: 'rgba(10, 22, 40, 0.4)',
+                      color: '#E8EEF0',
+                      border: '1px solid rgba(232, 238, 240, 0.2)',
+                    }}
                   >
                     Browse all services
                   </Link>

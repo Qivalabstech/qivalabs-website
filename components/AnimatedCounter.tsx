@@ -1,7 +1,11 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface AnimatedCounterProps {
   from?: number;
@@ -10,50 +14,46 @@ interface AnimatedCounterProps {
   prefix?: string;
   suffix?: string;
   className?: string;
-  formatter?: (n: number) => string;
 }
 
 export default function AnimatedCounter({
   from = 0,
   to,
-  duration = 1600,
+  duration = 1.6,
   prefix = '',
   suffix = '',
   className = '',
-  formatter,
 }: AnimatedCounterProps) {
-  const [value, setValue] = useState(from);
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-40px' });
-  const hasStarted = useRef(false);
+  const counterRef = useRef({ val: from });
 
-  useEffect(() => {
-    if (!isInView || hasStarted.current) return;
-    hasStarted.current = true;
+  useGSAP(
+    () => {
+      const el = ref.current;
+      if (!el) return;
 
-    const startTime = performance.now();
-    const range = to - from;
-
-    function easeOut(t: number) {
-      return 1 - Math.pow(1 - t, 3);
-    }
-
-    function tick(now: number) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = easeOut(progress);
-      setValue(Math.round(from + range * eased));
-      if (progress < 1) requestAnimationFrame(tick);
-    }
-
-    requestAnimationFrame(tick);
-  }, [isInView, from, to, duration]);
-
-  const display = formatter ? formatter(value) : value.toLocaleString('en-IN');
+      gsap.to(counterRef.current, {
+        val: to,
+        duration,
+        ease: 'power2.out',
+        roundProps: 'val',
+        onUpdate: () => {
+          el.textContent = `${prefix}${counterRef.current.val.toLocaleString('en-IN')}${suffix}`;
+        },
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 90%',
+          toggleActions: 'play none none none',
+          once: true,
+        },
+      });
+    },
+    { scope: ref }
+  );
 
   return (
     <span ref={ref} className={className}>
-      {prefix}{display}{suffix}
+      {prefix}{from.toLocaleString('en-IN')}{suffix}
     </span>
   );
 }

@@ -1,10 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 import Logo from './Logo';
+
+gsap.registerPlugin(useGSAP);
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
@@ -19,6 +23,20 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const headerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(headerRef.current, {
+        y: -64,
+        opacity: 0,
+        duration: 0.65,
+        ease: 'power3.out',
+        delay: 0.05,
+      });
+    },
+    { scope: headerRef }
+  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -32,6 +50,7 @@ export default function Navbar() {
 
   return (
     <header
+      ref={headerRef}
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
         backgroundColor: scrolled ? 'rgba(10, 22, 40, 0.96)' : 'transparent',
