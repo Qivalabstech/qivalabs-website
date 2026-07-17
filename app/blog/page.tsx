@@ -2,29 +2,34 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ScrollReveal from '@/components/ScrollReveal';
+import ScrollReveal, { StaggerReveal, StaggerItem } from '@/components/ScrollReveal';
 import SectionWrapper from '@/components/SectionWrapper';
+import { getAllPosts } from '@/lib/blog';
 
 export const metadata: Metadata = {
   title: 'Blog — Technology & Business Insights | QivaLabs',
   description:
-    'Insights on software development, AI, digital marketing, and business technology from QivaLabs LLP — Udaipur\'s full-service IT and digital solutions company.',
+    "Practical insights on software development, AI automation, digital marketing, and business technology from QivaLabs LLP — Udaipur's full-service IT company.",
+  alternates: { canonical: 'https://qivalabs.com/blog' },
   openGraph: {
     title: 'Blog — QivaLabs | Technology & Business Insights',
     description: 'Practical technology and business insights from QivaLabs LLP, Udaipur.',
+    url: 'https://qivalabs.com/blog',
+    type: 'website',
   },
 };
 
-const COMING_SOON_TOPICS = [
-  { icon: '🤖', topic: 'AI & Automation', description: 'Practical AI integration for Indian SMEs — what works, what doesn\'t, and what to try first.' },
-  { icon: '🚀', topic: 'Software Development', description: 'Architecture decisions, tech stack choices, and lessons from building real products.' },
-  { icon: '📣', topic: 'Digital Marketing', description: 'SEO, paid ads, and content strategies that generate real leads in the Indian market.' },
-  { icon: '☁️', topic: 'Cloud & Infrastructure', description: 'Cost-effective cloud setups, DevOps pipelines, and infrastructure decisions for growing teams.' },
-  { icon: '💡', topic: 'Business Technology', description: 'How technology decisions shape business outcomes — from CRM to ERP to custom software.' },
-  { icon: '🔒', topic: 'Cybersecurity', description: 'Practical security guidance for businesses that can\'t afford a dedicated security team.' },
-];
+const CATEGORY_COLORS: Record<string, string> = {
+  'Software Development': '#0B9BAA',
+  'AI & Automation': '#16C4D6',
+  'Website Development': '#0B9BAA',
+  'Digital Marketing': '#16C4D6',
+  'IT Infrastructure': '#0B9BAA',
+};
 
 export default function BlogPage() {
+  const posts = getAllPosts();
+
   return (
     <>
       <Navbar />
@@ -50,7 +55,7 @@ export default function BlogPage() {
               <span style={{ color: '#C9D6D9' }}>Blog</span>
             </nav>
             <ScrollReveal>
-              <span className="tag mb-4 inline-flex">Coming soon</span>
+              <span className="tag mb-4 inline-flex">QivaLabs Blog</span>
               <h1
                 className="font-bold leading-tight mb-6"
                 style={{
@@ -72,59 +77,92 @@ export default function BlogPage() {
                 </span>
               </h1>
               <p className="text-xl leading-relaxed max-w-2xl" style={{ color: '#8BAFC0' }}>
-                Practical technology and business content is coming soon. We&apos;ll be covering
-                software development, AI & automation, digital marketing, and business strategy
-                for Indian businesses.
+                Practical, opinionated content on software development, AI automation, digital
+                marketing, and business technology — written from the perspective of people
+                who actually build these things for businesses across India.
               </p>
             </ScrollReveal>
           </div>
         </section>
 
-        {/* Topics preview */}
+        {/* Posts grid */}
         <SectionWrapper style={{ backgroundColor: '#0D2035' } as React.CSSProperties}>
-          <ScrollReveal className="mb-10">
-            <h2
-              className="font-bold mb-3"
-              style={{
-                fontFamily: 'var(--font-space-grotesk)',
-                fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-                color: '#ffffff',
-              }}
-            >
-              Topics we&apos;ll be covering
-            </h2>
-            <p style={{ color: '#8BAFC0' }}>
-              Practical, opinionated content based on what we see building software and digital
-              products for real businesses every day.
-            </p>
-          </ScrollReveal>
+          {posts.length > 0 ? (
+            <StaggerReveal className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {posts.map((post) => (
+                <StaggerItem key={post.slug}>
+                  <Link href={`/blog/${post.slug}`} className="group block h-full">
+                    <article
+                      className="flex flex-col h-full p-6 rounded-xl card-angular"
+                      style={{
+                        backgroundColor: '#0F2742',
+                        border: '1px solid rgba(11, 155, 170, 0.18)',
+                      }}
+                    >
+                      {/* Category */}
+                      <div className="flex items-center justify-between mb-4">
+                        <span
+                          className="text-xs font-semibold px-2.5 py-1 rounded"
+                          style={{
+                            backgroundColor: 'rgba(11, 155, 170, 0.12)',
+                            color: CATEGORY_COLORS[post.category] ?? '#0B9BAA',
+                            border: '1px solid rgba(11, 155, 170, 0.2)',
+                          }}
+                        >
+                          {post.category}
+                        </span>
+                        <span className="text-xs" style={{ color: '#4A6E80' }}>
+                          {post.readingTime}
+                        </span>
+                      </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {COMING_SOON_TOPICS.map((topic) => (
-              <div
-                key={topic.topic}
-                className="p-5 rounded-xl card-angular"
-                style={{
-                  backgroundColor: 'rgba(15, 39, 66, 0.7)',
-                  border: '1px solid rgba(11, 155, 170, 0.15)',
-                }}
-              >
-                <span className="text-2xl mb-3 block">{topic.icon}</span>
-                <h3
-                  className="font-semibold mb-2"
-                  style={{ fontFamily: 'var(--font-space-grotesk)', color: '#ffffff' }}
-                >
-                  {topic.topic}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: '#8BAFC0' }}>
-                  {topic.description}
-                </p>
-              </div>
-            ))}
-          </div>
+                      {/* Title */}
+                      <h2
+                        className="font-bold mb-3 text-base leading-snug flex-none"
+                        style={{
+                          fontFamily: 'var(--font-space-grotesk)',
+                          color: '#ffffff',
+                          transition: 'color 0.2s',
+                        }}
+                      >
+                        {post.title}
+                      </h2>
+
+                      {/* Excerpt */}
+                      <p className="text-sm leading-relaxed flex-1 mb-4" style={{ color: '#8BAFC0' }}>
+                        {post.excerpt}
+                      </p>
+
+                      {/* Footer */}
+                      <div className="flex items-center justify-between mt-auto pt-4" style={{ borderTop: '1px solid rgba(11, 155, 170, 0.12)' }}>
+                        <time
+                          className="text-xs"
+                          style={{ color: '#4A6E80' }}
+                          dateTime={post.publishedDate}
+                        >
+                          {new Date(post.publishedDate).toLocaleDateString('en-IN', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric',
+                          })}
+                        </time>
+                        <span className="text-xs font-medium" style={{ color: '#16C4D6' }}>
+                          Read →
+                        </span>
+                      </div>
+                    </article>
+                  </Link>
+                </StaggerItem>
+              ))}
+            </StaggerReveal>
+          ) : (
+            <ScrollReveal className="text-center py-16">
+              <p style={{ color: '#8BAFC0' }}>Blog posts are on the way. Check back soon.</p>
+            </ScrollReveal>
+          )}
         </SectionWrapper>
 
-        {/* Notify CTA */}
+        {/* CTA */}
         <SectionWrapper>
           <ScrollReveal className="text-center">
             <h2
@@ -135,11 +173,11 @@ export default function BlogPage() {
                 color: '#ffffff',
               }}
             >
-              Can&apos;t wait? Talk to us directly.
+              Have a specific technology challenge?
             </h2>
             <p className="text-lg mb-8 max-w-xl mx-auto" style={{ color: '#8BAFC0' }}>
-              If you have a specific technology challenge you want to discuss, reach out — we&apos;re
-              always happy to have a no-obligation conversation.
+              Reach out directly — we&apos;re always happy to have a no-obligation conversation
+              about your project or situation.
             </p>
             <Link
               href="/contact"

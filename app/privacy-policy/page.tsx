@@ -6,7 +6,15 @@ import Footer from '@/components/Footer';
 export const metadata: Metadata = {
   title: 'Privacy Policy — QivaLabs LLP',
   description:
-    'Privacy Policy for QivaLabs LLP (LLPIN: ACV-6746) and all QivaLabs products including Mandi WhatsApp Automation (QIVA) and AI CRM Automation. Udaipur, Rajasthan, India.',
+    'Privacy Policy for QivaLabs LLP (LLPIN ACV-6746) — covering data we collect, how we use it, and your rights under Indian law, including DPDP. Udaipur, Rajasthan, India.',
+  alternates: { canonical: 'https://qivalabs.com/privacy-policy' },
+  openGraph: {
+    title: 'Privacy Policy — QivaLabs LLP',
+    description: 'Privacy Policy for QivaLabs LLP — Udaipur, Rajasthan, India.',
+    url: 'https://qivalabs.com/privacy-policy',
+    type: 'website',
+  },
+  robots: { index: false, follow: false },
 };
 
 const SECTIONS = [

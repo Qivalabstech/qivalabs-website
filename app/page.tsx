@@ -14,10 +14,13 @@ export const metadata: Metadata = {
   title: 'QivaLabs — Full-Service Software & Digital Solutions | Udaipur, India',
   description:
     'QivaLabs LLP is a full-service IT company in Udaipur, Rajasthan. We build custom software, mobile apps, websites, AI automation, and digital marketing solutions for businesses across India.',
+  alternates: { canonical: 'https://qivalabs.com' },
   openGraph: {
     title: 'QivaLabs — Full-Service Software & Digital Solutions | Udaipur',
     description:
       "Custom software, mobile apps, AI automation, and digital marketing from QivaLabs LLP — Udaipur's full-service IT partner.",
+    url: 'https://qivalabs.com',
+    type: 'website',
   },
 };
 

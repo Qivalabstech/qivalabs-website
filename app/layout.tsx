@@ -41,6 +41,9 @@ export const metadata: Metadata = {
   creator: 'QivaLabs LLP',
   publisher: 'QivaLabs LLP',
   metadataBase: new URL('https://qivalabs.com'),
+  alternates: {
+    canonical: 'https://qivalabs.com',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_IN',
@@ -49,21 +52,12 @@ export const metadata: Metadata = {
     title: 'QivaLabs — Full-Service Software & Digital Solutions',
     description:
       'Custom software, mobile apps, AI automation, and digital solutions from QivaLabs LLP — based in Udaipur, serving businesses across India.',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'QivaLabs — Full-Service Software & Digital Solutions',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'QivaLabs — Full-Service Software & Digital Solutions',
     description:
       'Custom software, mobile apps, AI automation, and digital solutions from QivaLabs LLP — Udaipur, India.',
-    images: ['/og-image.png'],
   },
   robots: {
     index: true,

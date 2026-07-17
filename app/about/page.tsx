@@ -11,9 +11,12 @@ export const metadata: Metadata = {
   title: 'About QivaLabs — Full-Service IT Company in Udaipur, India',
   description:
     'Learn about QivaLabs LLP — our story, our founders, and our mission to deliver world-class software and digital solutions from Udaipur, Rajasthan to businesses across India.',
+  alternates: { canonical: 'https://qivalabs.com/about' },
   openGraph: {
     title: 'About QivaLabs — Full-Service IT Company in Udaipur',
     description: 'Meet the team behind QivaLabs LLP and learn about our story, mission, and values.',
+    url: 'https://qivalabs.com/about',
+    type: 'website',
   },
 };
 

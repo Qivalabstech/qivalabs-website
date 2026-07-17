@@ -6,6 +6,10 @@ Allow: /
 User-agent: *
 Disallow: /api/
 
+# *
+User-agent: *
+Disallow: /admin
+
 # Host
 Host: https://qivalabs.com
 

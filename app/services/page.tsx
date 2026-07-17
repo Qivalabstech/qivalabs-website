@@ -10,11 +10,14 @@ import { SERVICE_CATEGORIES, getServicesByCategory } from '@/lib/services-data';
 export const metadata: Metadata = {
   title: 'All Services — Software, Digital & IT Solutions | QivaLabs',
   description:
-    'Explore all 31 services from QivaLabs LLP — custom software, mobile apps, AI automation, digital marketing, cloud solutions, cybersecurity, and more. Based in Udaipur, serving India.',
+    'Explore all 31 services from QivaLabs LLP — custom software, mobile apps, AI automation, digital marketing, cloud solutions, cybersecurity, and more. Udaipur, India.',
+  alternates: { canonical: 'https://qivalabs.com/services' },
   openGraph: {
     title: 'All Services — QivaLabs | Udaipur, India',
     description:
       'Full-service IT and digital solutions — 31 services across software development, digital marketing, AI automation, and IT infrastructure.',
+    url: 'https://qivalabs.com/services',
+    type: 'website',
   },
 };
 

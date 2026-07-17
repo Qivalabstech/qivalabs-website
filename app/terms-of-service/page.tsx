@@ -6,7 +6,15 @@ import Footer from '@/components/Footer';
 export const metadata: Metadata = {
   title: 'Terms of Service — QivaLabs LLP',
   description:
-    'Terms of Service for QivaLabs LLP (LLPIN: ACV-6746) covering Mandi WhatsApp Automation (QIVA), AI CRM Automation, and WaitJI AI. Governed by the laws of India, jurisdiction: Udaipur, Rajasthan.',
+    'Terms of Service for QivaLabs LLP (LLPIN ACV-6746) — covering all products and services including QIVA, AI CRM Automation, and WaitJI AI. Governed by Indian law, jurisdiction Udaipur.',
+  alternates: { canonical: 'https://qivalabs.com/terms-of-service' },
+  openGraph: {
+    title: 'Terms of Service — QivaLabs LLP',
+    description: 'Terms of Service for QivaLabs LLP — Udaipur, Rajasthan, India.',
+    url: 'https://qivalabs.com/terms-of-service',
+    type: 'website',
+  },
+  robots: { index: false, follow: false },
 };
 
 const SECTIONS = [

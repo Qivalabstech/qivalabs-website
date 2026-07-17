@@ -4,77 +4,59 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollReveal, { StaggerReveal, StaggerItem } from '@/components/ScrollReveal';
 import SectionWrapper, { SectionHeader } from '@/components/SectionWrapper';
+import { supabase, type PortfolioItem } from '@/lib/supabase';
 
 export const metadata: Metadata = {
   title: 'Portfolio & Case Studies — QivaLabs | Udaipur, India',
   description:
-    'Explore QivaLabs\' portfolio of software, web, and digital projects — including WaitJI AI, QIVA Bot, hotel websites, ed-tech platforms, and enterprise software. Based in Udaipur, India.',
+    "Explore QivaLabs' portfolio of software, web, and digital projects — WaitJI AI, QIVA Bot, hotel websites, ed-tech platforms, and enterprise software from Udaipur, India.",
+  alternates: { canonical: 'https://qivalabs.com/portfolio' },
   openGraph: {
     title: 'Portfolio — QivaLabs | Work & Case Studies',
     description: 'Software, web, AI, and digital projects delivered by QivaLabs LLP from Udaipur, India.',
+    url: 'https://qivalabs.com/portfolio',
+    type: 'website',
   },
 };
 
-const PROJECTS = [
+const FALLBACK_PROJECTS = [
   {
-    title: 'WaitJI AI',
-    category: 'AI Product',
-    description:
-      "India's first AI ad marketplace that monetises the idle wait time inside developer tools (Claude Code, Copilot, and similar AI coding assistants). A full-stack SaaS platform with publisher SDK, advertiser dashboard, and real-time impression delivery.",
-    tags: ['AI / ML', 'SaaS', 'Next.js', 'Node.js'],
-    highlight: 'Launched to market · External product',
-    link: 'https://waitjiai.in',
-    external: true,
-    icon: '⏱️',
+    title: 'WaitJI AI', category: 'AI Product',
+    description: "India's first AI ad marketplace that monetises the idle wait time inside developer tools. A full-stack SaaS platform with publisher SDK, advertiser dashboard, and real-time impression delivery.",
+    tags: ['AI / ML', 'SaaS', 'Next.js', 'Node.js'], highlight: 'Launched to market · External product',
+    link: 'https://waitjiai.in', is_external: true, icon: '⏱️',
   },
   {
-    title: 'QIVA Bot (Mandi WhatsApp Automation)',
-    category: 'AI Automation',
-    description:
-      'A multi-bot WhatsApp automation system for wholesale mandi businesses in India. Three specialised AI bots handle customer orders, supplier management, and owner analytics — replacing manual WhatsApp staff and running 24/7.',
-    tags: ['WhatsApp API', 'AI', 'Automation', 'Node.js'],
-    highlight: 'Active clients · Udaipur, Rajasthan',
-    icon: '🤖',
+    title: 'QIVA Bot (Mandi WhatsApp Automation)', category: 'AI Automation',
+    description: 'A multi-bot WhatsApp automation system for wholesale mandi businesses. Three specialised AI bots handle customer orders, supplier management, and owner analytics — running 24/7.',
+    tags: ['WhatsApp API', 'AI', 'Automation', 'Node.js'], highlight: 'Active clients · Udaipur, Rajasthan',
+    link: null, is_external: false, icon: '🤖',
   },
   {
-    title: 'Jharokha Haveli',
-    category: 'Hospitality Website',
-    description:
-      'Heritage boutique hotel website for a property in Udaipur. Features an immersive full-screen design with rich photography, room booking inquiry forms, dining and amenities pages, and local area guides. Built on Next.js with Tailwind v4.',
-    tags: ['Next.js', 'Tailwind CSS', 'UX Design', 'SEO'],
-    highlight: 'Udaipur heritage hotel',
-    icon: '🏰',
+    title: 'Jharokha Haveli', category: 'Hospitality Website',
+    description: 'Heritage boutique hotel website for a property in Udaipur with immersive full-screen design, room booking forms, and local area guides. Built on Next.js with Tailwind v4.',
+    tags: ['Next.js', 'Tailwind CSS', 'UX Design', 'SEO'], highlight: 'Udaipur heritage hotel',
+    link: null, is_external: false, icon: '🏰',
   },
   {
-    title: 'Surbhi Ed-Tech Platform',
-    category: 'Education Technology',
-    description:
-      'A comprehensive multi-page ed-tech platform for an education brand. Includes course listings, student portals, instructor profiles, payment integration, and a demo authentication system. 13 pages built on Next.js 16 with modern UI.',
-    tags: ['Next.js', 'Ed-Tech', 'Payments', 'TypeScript'],
-    highlight: 'Full platform · 13 pages',
-    icon: '📚',
+    title: 'Surbhi Ed-Tech Platform', category: 'Education Technology',
+    description: 'Comprehensive ed-tech platform with course listings, student portals, payment integration, and a demo authentication system. 13 pages built on Next.js 16.',
+    tags: ['Next.js', 'Ed-Tech', 'Payments', 'TypeScript'], highlight: 'Full platform · 13 pages',
+    link: null, is_external: false, icon: '📚',
   },
   {
-    title: 'AI CRM Automation',
-    category: 'AI Integration',
-    description:
-      'An intelligent AI layer built on top of CRM systems (Zoho, HubSpot, Freshdesk) for B2B support teams. Automatically triages inbound emails and messages into three tiers: auto-resolved, agent-assisted, and human escalation.',
-    tags: ['LLM Integration', 'CRM', 'AI', 'Python'],
-    highlight: 'B2B SaaS product',
-    icon: '🧠',
+    title: 'AI CRM Automation', category: 'AI Integration',
+    description: 'Intelligent AI triage layer for CRM systems (Zoho, HubSpot, Freshdesk). Automatically routes inbound queries: auto-resolved, agent-assisted, and human escalation.',
+    tags: ['LLM Integration', 'CRM', 'AI', 'Python'], highlight: 'B2B SaaS product',
+    link: null, is_external: false, icon: '🧠',
   },
   {
-    title: 'Print Support Platform',
-    category: 'Web Application',
-    description:
-      'A full-stack printer support platform with React/Vite frontend and Express backend. Features real-time live chat with Socket.io, agent and admin dashboards, job tracking, and customer support workflows for a printer service business.',
-    tags: ['React', 'Express', 'Socket.io', 'Node.js'],
-    highlight: 'Real-time support system',
-    icon: '🖨️',
+    title: 'Print Support Platform', category: 'Web Application',
+    description: 'Full-stack printer support platform with React/Vite and Express. Features real-time live chat with Socket.io, agent dashboards, and job tracking.',
+    tags: ['React', 'Express', 'Socket.io', 'Node.js'], highlight: 'Real-time support system',
+    link: null, is_external: false, icon: '🖨️',
   },
 ];
-
-const CATEGORIES = ['All', 'AI Product', 'AI Automation', 'AI Integration', 'Hospitality Website', 'Education Technology', 'Web Application'];
 
 const portfolioJsonLd = {
   '@context': 'https://schema.org',
@@ -91,7 +73,26 @@ const portfolioJsonLd = {
   },
 };
 
-export default function PortfolioPage() {
+async function getPortfolioItems(): Promise<PortfolioItem[]> {
+  try {
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      return FALLBACK_PROJECTS as unknown as PortfolioItem[];
+    }
+    const { data, error } = await supabase
+      .from('portfolio_items')
+      .select('*')
+      .eq('is_visible', true)
+      .order('display_order', { ascending: true });
+    if (error || !data?.length) return FALLBACK_PROJECTS as unknown as PortfolioItem[];
+    return data;
+  } catch {
+    return FALLBACK_PROJECTS as unknown as PortfolioItem[];
+  }
+}
+
+export default async function PortfolioPage() {
+  const projects = await getPortfolioItems();
+
   return (
     <>
       <script
@@ -154,7 +155,7 @@ export default function PortfolioPage() {
         {/* Projects grid */}
         <SectionWrapper style={{ backgroundColor: '#0D2035' } as React.CSSProperties}>
           <StaggerReveal className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PROJECTS.map((project) => (
+            {projects.map((project) => (
               <StaggerItem key={project.title}>
                 <div
                   className="flex flex-col p-6 rounded-xl card-angular h-full card-glow"
@@ -202,7 +203,7 @@ export default function PortfolioPage() {
                     <span className="text-xs" style={{ color: '#0B9BAA' }}>
                       ✓ {project.highlight}
                     </span>
-                    {project.link && (
+                    {project.link && project.is_external && (
                       <a
                         href={project.link}
                         target="_blank"
