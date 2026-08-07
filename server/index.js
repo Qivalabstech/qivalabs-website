@@ -137,6 +137,32 @@ app.post('/api/contact', async (req, res) => {
   res.json({ success: true, message: 'Message received. Thank you!' });
 });
 
+// ─── POST /api/career/apply ───────────────────────────────────────────────────
+app.post('/api/career/apply', async (req, res) => {
+  const { name, email, phone, role, resumeLink, coverNote } = req.body;
+
+  if (!name?.trim() || !email?.trim() || !phone?.trim()) {
+    return res.status(400).json({ error: 'name, email, and phone are required.' });
+  }
+
+  const application = {
+    type: 'career-application',
+    name: name.trim(),
+    email: email.trim(),
+    phone: phone.trim(),
+    role: role?.trim() ?? '',
+    resumeLink: resumeLink?.trim() ?? '',
+    coverNote: coverNote?.trim() ?? '',
+    receivedAt: new Date().toISOString(),
+  };
+
+  console.log('[/api/career/apply] New application:', application);
+  appendLead('career-applications.json', application);
+  await forwardToWebhook(application);
+
+  res.json({ success: true, message: "Application received. We'll be in touch if it's a fit." });
+});
+
 // ─── Start ────────────────────────────────────────────────────────────────────
 app.listen(PORT, () => {
   console.log(`QivaLabs API server running on port ${PORT}`);

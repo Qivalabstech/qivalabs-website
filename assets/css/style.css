@@ -325,30 +325,21 @@ em, i.emph { font-style: italic; }
 .hero h1 { color: #fff; margin-bottom: var(--space-2); }
 .hero .split h1 { font-size: clamp(2.1rem, 3.8vw, 3.4rem); }
 .hero .btn--primary { background: var(--teal); }
-.hero__visual { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/5; }
-.hero__visual img { width: 100%; height: 100%; object-fit: cover; }
+/* ─── Centered hero (no decorative visual, typography carries it) ────── */
+.hero--center { text-align: center; }
+.hero--center .hero__content { max-width: 46rem; margin-inline: auto; }
+.hero--center .eyebrow { margin-inline: auto; }
+.hero--center .lede { margin-inline: auto; }
 
-/* ─── Abstract geometric visual (flat panels, no photo, no gradient) ─── */
-.visual-abstract {
-  position: relative;
-  aspect-ratio: 4/5;
-  border-radius: var(--radius);
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.1);
-  overflow: hidden;
+/* ─── Word-by-word text reveal (hero headlines) ───────────────────────── */
+[data-text-reveal] { overflow: hidden; }
+[data-text-reveal] .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em);
+  will-change: transform;
 }
-.visual-abstract .panel {
-  position: absolute;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.14);
-}
-.visual-abstract .panel--1 { width: 62%; height: 46%; top: 8%; left: 8%; background: var(--teal); opacity: 0.9; }
-.visual-abstract .panel--2 { width: 46%; height: 34%; bottom: 12%; left: 20%; background: var(--deep); border-color: rgba(127,224,234,0.25); }
-.visual-abstract .panel--3 { width: 34%; height: 34%; top: 30%; right: 6%; background: transparent; border: 1px solid rgba(127,224,234,0.5); }
-.visual-abstract .panel--4 { width: 20%; height: 20%; bottom: 6%; right: 10%; background: #7fe0ea; opacity: 0.16; }
-.visual-abstract.visual-abstract--light { background: var(--bg-alt); border-color: var(--border); }
-.visual-abstract.visual-abstract--light .panel--3 { border-color: rgba(11,155,170,0.4); }
-.visual-abstract.visual-abstract--light .panel--4 { background: var(--teal); opacity: 0.14; }
+.no-js [data-text-reveal] .word { opacity: 1; transform: none; }
 
 .breadcrumb { display: flex; gap: 0.4rem; align-items: center; font-size: 0.8rem; color: var(--on-dark-soft); margin-bottom: var(--space-3); }
 .breadcrumb a { color: var(--on-dark-soft); }

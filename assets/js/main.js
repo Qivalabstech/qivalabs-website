@@ -87,6 +87,23 @@
     }
   }
 
+  /* ---- Word-by-word headline reveal --------------------------------------
+   * [data-text-reveal]: splits the heading into words and staggers them in
+   * on load. Communicates "this is the one sentence to read first" on the
+   * hero, the single highest-priority element on the page. Runs once, on
+   * load rather than scroll, since it's always the first thing in view.
+   */
+  document.querySelectorAll('[data-text-reveal]').forEach(function (heading) {
+    var words = heading.textContent.trim().split(/\s+/);
+    heading.innerHTML = words.map(function (w) { return '<span class="word">' + w + '</span>'; }).join(' ');
+    var spans = heading.querySelectorAll('.word');
+    if (prefersReducedMotion || !hasGSAP) {
+      spans.forEach(function (s) { s.style.opacity = 1; s.style.transform = 'none'; });
+      return;
+    }
+    gsap.to(spans, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.045, delay: 0.15 });
+  });
+
   /* ---- Animated stat counters --------------------------------------------
    * Communicates scale (60+ projects, 31 services) with a count-up as the
    * stat enters view, once, tied to real DOM values (no faked precision).
