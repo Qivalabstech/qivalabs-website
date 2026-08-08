@@ -184,6 +184,34 @@
     });
   }
 
+  /* ---- Card tilt --------------------------------------------------------
+   * Subtle 3D tilt toward the cursor on cards, communicates "this is a
+   * physical, liftable object" rather than a flat rectangle. Transform-only,
+   * GPU-cheap. The existing CSS :hover lift still applies as a no-JS/touch
+   * fallback; once JS sets an inline transform it naturally takes over.
+   */
+  if (!prefersReducedMotion && hasGSAP && window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.card').forEach(function (card) {
+      card.style.transformPerspective = '900px';
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        gsap.to(card, {
+          y: -7,
+          rotateX: py * -6,
+          rotateY: px * 8,
+          transformPerspective: 900,
+          duration: 0.4,
+          ease: 'power2.out',
+        });
+      });
+      card.addEventListener('mouseleave', function () {
+        gsap.to(card, { y: 0, rotateX: 0, rotateY: 0, duration: 0.6, ease: 'power3.out' });
+      });
+    });
+  }
+
   /* ---- Sticky-stack (process / how-we-work) -----------------------------
    * Cards pin and shrink as the next one arrives, communicates sequence
    * (step 1 gives way to step 2) rather than a flat list.
