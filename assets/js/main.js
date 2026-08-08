@@ -53,12 +53,13 @@
         var items = Array.prototype.filter.call(group.querySelectorAll('[data-reveal]'), function (el) {
           return el.closest('[data-reveal-group]') === group;
         });
-        gsap.timeline({ scrollTrigger: { trigger: group, start: 'top 82%', once: true } }).to(items, {
+        gsap.timeline({ scrollTrigger: { trigger: group, start: 'top 85%', once: true } }).to(items, {
           opacity: 1,
           y: 0,
-          duration: 0.7,
-          ease: 'power3.out',
-          stagger: 0.09,
+          scale: 1,
+          duration: 0.9,
+          ease: 'back.out(1.4)',
+          stagger: 0.12,
           onStart: function () { items.forEach(function (el) { el.classList.add('is-visible'); }); },
         });
       });
@@ -66,9 +67,10 @@
         gsap.to(el, {
           opacity: 1,
           y: 0,
-          duration: 0.7,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+          scale: 1,
+          duration: 0.9,
+          ease: 'back.out(1.4)',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
           onStart: function () { el.classList.add('is-visible'); },
         });
       });
@@ -101,7 +103,7 @@
       spans.forEach(function (s) { s.style.opacity = 1; s.style.transform = 'none'; });
       return;
     }
-    gsap.to(spans, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.045, delay: 0.15 });
+    gsap.to(spans, { opacity: 1, y: 0, rotateZ: 0, duration: 0.85, ease: 'back.out(1.6)', stagger: 0.07, delay: 0.15 });
   });
 
   /* ---- Animated stat counters --------------------------------------------
@@ -139,7 +141,7 @@
    */
   if (!prefersReducedMotion && window.matchMedia('(hover: hover)').matches) {
     document.querySelectorAll('[data-magnetic]').forEach(function (el) {
-      var strength = 14;
+      var strength = 22;
       el.addEventListener('mousemove', function (e) {
         var r = el.getBoundingClientRect();
         var x = (e.clientX - r.left - r.width / 2) / r.width;
