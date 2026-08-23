@@ -5,11 +5,17 @@
   "outputDirectory": ".",
   "rewrites": [
     { "source": "/admin", "destination": "https://qivalabs-admin.vercel.app/admin" },
-    { "source": "/admin/:path*", "destination": "https://qivalabs-admin.vercel.app/admin/:path*" }
+    { "source": "/admin/:path*", "destination": "https://qivalabs-admin.vercel.app/admin/:path*" },
+    { "source": "/demo/cafe-menu", "destination": "https://qivalabs-cafe-demo.vercel.app" },
+    { "source": "/demo/cafe-menu/:path*", "destination": "https://qivalabs-cafe-demo.vercel.app/:path*" }
   ],
   "headers": [
     {
       "source": "/admin/:path*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/demo/:path*",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     }
   ]
