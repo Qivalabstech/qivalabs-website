@@ -504,3 +504,212 @@ em, i.emph { font-style: italic; }
 
 /* ─── Magnetic CTA target (transform only, GPU-cheap) ────────────────── */
 [data-magnetic] { display: inline-flex; will-change: transform; }
+
+/* ─── Brand website showcase (portfolio + case studies) ──────────────
+   Flat colour-blocked stage per brand, a browser frame holding a tall
+   homepage capture that pans on hover, and a phone frame on top.
+   Motion is the only flourish: no gradients, no glow. */
+.showcase { display: flex; flex-direction: column; gap: var(--space-6); }
+.showcase-row {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--space-5);
+  align-items: center;
+}
+.showcase-row:nth-child(even) { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.showcase-row:nth-child(even) .showcase-stage { order: 2; }
+
+.showcase-stage {
+  position: relative;
+  display: block;
+  aspect-ratio: 7 / 5.2;
+  background: var(--stage, var(--bg-alt));
+  border-radius: var(--radius);
+  border: 1px solid rgba(23, 19, 14, 0.08);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform var(--duration-md) var(--ease), box-shadow var(--duration-md) var(--ease);
+}
+.showcase-stage:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.showcase-stage--wide { aspect-ratio: 16 / 9.4; }
+
+.browser {
+  position: absolute;
+  left: 7%;
+  top: 9%;
+  bottom: 0;
+  width: 76%;
+  background: #fff;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.showcase-stage--wide .browser { left: 6%; width: 80%; top: 8%; }
+.browser__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  background: #f3f1ec;
+  border-bottom: 1px solid var(--border);
+}
+.browser__dot { width: 9px; height: 9px; border-radius: 50%; background: #d3cec3; flex: none; }
+.browser__url {
+  margin-left: 10px;
+  min-width: 0;
+  max-width: 62%;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.12rem 0.7rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.browser__screen { position: absolute; inset: 30px 0 0 0; overflow: hidden; background: #fff; }
+.browser__screen img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 50% 0%;
+  transition: object-position 6s cubic-bezier(0.45, 0, 0.55, 1);
+}
+.showcase-stage:hover .browser__screen img,
+.showcase-stage:focus-visible .browser__screen img { object-position: 50% 100%; transition-duration: 9s; }
+
+.phone {
+  position: absolute;
+  right: 5%;
+  bottom: 7%;
+  width: 22%;
+  aspect-ratio: 390 / 844;
+  padding: 5px;
+  background: #0b0a08;
+  border-radius: 24px;
+  box-shadow: var(--shadow-dark);
+  transition: transform 0.7s var(--ease);
+}
+.phone::before {
+  content: '';
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  width: 26%;
+  height: 6px;
+  transform: translateX(-50%);
+  background: #0b0a08;
+  border-radius: 999px;
+  z-index: 1;
+}
+.phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 19px; display: block; }
+.showcase-stage:hover .phone { transform: translateY(-12px) rotate(-3deg); }
+.showcase-stage--wide .phone { width: 17%; right: 4%; }
+
+.showcase-stage__hint {
+  position: absolute;
+  left: 7%;
+  top: 2.4%;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(11, 10, 8, 0.6);
+  transition: opacity var(--duration-md) var(--ease);
+}
+.showcase-stage--dark .showcase-stage__hint { color: rgba(255, 255, 255, 0.62); }
+.showcase-stage:hover .showcase-stage__hint { opacity: 0; }
+
+.showcase-copy p { color: var(--text-soft); margin-top: var(--space-2); max-width: 46ch; }
+.showcase-num {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--teal);
+}
+.showcase-num span { font-size: 0.35em; color: var(--muted); letter-spacing: 0.06em; }
+.showcase-kind {
+  display: block;
+  margin-top: var(--space-2);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.showcase-title { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-top: 0.35rem; }
+
+.swatches { display: flex; gap: 0.45rem; margin-top: var(--space-3); }
+.swatches span {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(23, 19, 14, 0.14);
+  transition: transform var(--duration-sm) var(--ease);
+}
+.swatches span:hover { transform: translateY(-3px) scale(1.12); }
+
+.case-showcase { padding-top: var(--space-5); }
+.case-showcase__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.case-showcase__meta .swatches { margin-top: 0; }
+.case-showcase__label { font-size: 0.8rem; font-weight: 600; color: var(--muted); }
+
+/* Thumbnail cards ("Other projects") */
+.card--thumb { overflow: hidden; }
+.card__thumb {
+  margin: calc(-1 * var(--space-3)) calc(-1 * var(--space-3)) var(--space-3);
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--stage, var(--bg-alt));
+  border-bottom: 1px solid var(--border);
+}
+.card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 0.8s var(--ease);
+}
+.card--thumb:hover .card__thumb img { transform: scale(1.05); }
+
+@media (max-width: 900px) {
+  .showcase { gap: var(--space-5); }
+  .showcase-row, .showcase-row:nth-child(even) { grid-template-columns: 1fr; gap: var(--space-3); }
+  .showcase-row:nth-child(even) .showcase-stage { order: 0; }
+  .showcase-stage, .showcase-stage--wide { aspect-ratio: 4 / 3.4; }
+  .browser, .showcase-stage--wide .browser { left: 6%; width: 74%; top: 11%; }
+  .phone, .showcase-stage--wide .phone { width: 27%; right: 4%; }
+  .case-showcase__label[style] { margin-left: 0 !important; }
+}
+
+/* Touch screens have no hover: pan the homepage slowly on a loop instead. */
+@media (hover: none) {
+  .browser__screen img { animation: showcase-pan 22s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+  .showcase-stage__hint { display: none; }
+}
+@keyframes showcase-pan {
+  0%, 12% { object-position: 50% 0%; }
+  50%, 62% { object-position: 50% 100%; }
+  100% { object-position: 50% 0%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .browser__screen img, .phone, .showcase-stage { transition: none !important; animation: none !important; }
+}
