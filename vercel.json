@@ -6,11 +6,11 @@
   "rewrites": [
     {
       "source": "/admin",
-      "destination": "https://qivalabs-admin.vercel.app/admin"
+      "destination": "https://qivalabs-admin-kappa.vercel.app/admin"
     },
     {
       "source": "/admin/:path*",
-      "destination": "https://qivalabs-admin.vercel.app/admin/:path*"
+      "destination": "https://qivalabs-admin-kappa.vercel.app/admin/:path*"
     },
     {
       "source": "/demo/cafe-menu",
