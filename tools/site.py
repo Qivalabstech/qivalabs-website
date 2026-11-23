@@ -892,7 +892,7 @@ def build():
         if rel.startswith('portfolio/'):
             slug = rel[len('portfolio/'):-5]
             p = next((x for x in PROJECTS if x['slug'] == slug), None)
-            main = re.sub(r'\s*<section class="section pv-feature">.*?</section>', '', main, flags=re.S)
+            main = re.sub(r'\s*<section class="section pv-feature"[^>]*>.*?</section>', '', main, flags=re.S)
             if p:
                 feat = f'\n    <section class="section pv-feature" style="padding-bottom:0;"><div class="container" style="max-width:980px;" data-reveal>{preview(p, big=True)}<p class="pixel text-center mt-3" style="font-size:.68rem;color:var(--muted);">LIVE PREVIEW · HOVER TO PAUSE</p></div></section>'
                 main = re.sub(r'(</section>)', r'\1' + feat, main, count=1)
