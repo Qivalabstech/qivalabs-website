@@ -5,7 +5,7 @@ slug: billing-software-restaurants-shops-india
 description: How to choose GST billing and POS software for a restaurant or retail shop in India: must-have features, inventory, cloud vs offline, real costs and mistakes to avoid.
 excerpt: Billing software decides how fast your counter moves and whether your stock numbers are true. Here is what matters for Indian restaurants and shops, and what doesn't.
 category: Billing and POS
-date: 2026-11-23
+date: 2026-11-21
 updated: 2026-11-23
 keywords: billing software, GST billing software, POS software India, restaurant billing software, retail billing software, inventory billing software
 cover_text: BILLING SOFTWARE

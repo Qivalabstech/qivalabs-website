@@ -1,6 +1,6 @@
 # QivaLabs
 
-> QivaLabs LLP is a software, mobile app and website development company in Udaipur, Rajasthan, India. It builds websites, mobile apps, custom software, ERP and CRM systems, billing software and AI and WhatsApp automation for businesses in India and abroad. Contact: sales@qivalabs.com, +91 72318 73730.
+> QivaLabs LLP is a software, mobile app, website and AI development company based in Udaipur, India. It builds custom software, mobile apps, websites, SaaS products, AI agents and automation for startups and businesses in the USA, UK, Australia, Europe and the UAE, as well as India. Contact: sales@qivalabs.com, +91 72318 73730.
 
 ## Key pages
 - [Services](https://www.qivalabs.com/services)
@@ -8,6 +8,13 @@
 - [Blog](https://www.qivalabs.com/blog)
 - [About](https://www.qivalabs.com/about)
 - [Contact](https://www.qivalabs.com/contact)
+
+## Regions
+- [Software, app and AI development for US businesses](https://www.qivalabs.com/software-development-company-usa)
+- [Software and app development for UK businesses](https://www.qivalabs.com/software-development-company-uk)
+- [App and software development for Australian businesses](https://www.qivalabs.com/software-development-company-australia)
+- [Software development for European businesses](https://www.qivalabs.com/software-development-company-europe)
+- [Mobile app, website and AI development for Dubai and the UAE](https://www.qivalabs.com/app-development-company-dubai)
 
 ## Services
 - [Website design and development](https://www.qivalabs.com/services/website-design-development)
@@ -20,6 +27,10 @@
 - [SEO and performance](https://www.qivalabs.com/services/seo-performance-optimization)
 
 ## Articles
+- [AI agent development cost in 2026: what small and mid-sized businesses really pay](https://www.qivalabs.com/blog/ai-agent-development-cost-small-business)
+- [How much does it cost to build an app in 2026? Real ranges for US, UK and Dubai businesses](https://www.qivalabs.com/blog/app-development-cost-2026)
+- [Mobile app development in Dubai: costs, timelines and what UAE businesses should check](https://www.qivalabs.com/blog/mobile-app-development-dubai-guide)
+- [Outsourcing software development to India in 2026: a straight guide for US, UK and Australian companies](https://www.qivalabs.com/blog/outsourcing-software-development-to-india-guide)
 - [Billing software for restaurants and shops in India: what to look for before you buy](https://www.qivalabs.com/blog/billing-software-restaurants-shops-india)
 - [Cloud migration for small businesses in India: when it's worth it and what it costs](https://www.qivalabs.com/blog/cloud-migration-guide-small-indian-businesses)
 - [Mobile app development in Udaipur: what it costs, how long it takes and how to pick a company](https://www.qivalabs.com/blog/mobile-app-development-cost-timeline-rajasthan)

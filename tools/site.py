@@ -84,7 +84,7 @@ def footer(cta=True):
       <div class="footer-grid">
         <div>
           <a href="/" class="brand"><span class="brand__mark"><img src="/assets/img/qiva-mark.png" alt="" width="24" height="26"></span><span class="brand__word">Qiva<span class="accent">Labs</span></span></a>
-          <p class="mt-3" style="max-width:34ch;font-size:.95rem;">Software, app and website development company in Udaipur, Rajasthan. We build websites, mobile apps, ERP and CRM systems and AI automation for businesses in India and abroad.</p>
+          <p class="mt-3" style="max-width:34ch;font-size:.95rem;">Software, app, website and AI development company. Based in Udaipur, India, building for startups and businesses in the USA, UK, Australia, Europe and the UAE.</p>
           <div class="social-row">
             <a href="https://www.instagram.com/qivalabs.ai/" aria-label="Instagram" rel="noopener"><i class="ph-bold ph-instagram-logo" aria-hidden="true"></i></a>
             <a href="https://www.linkedin.com/company/qivalabs" aria-label="LinkedIn" rel="noopener"><i class="ph-bold ph-linkedin-logo" aria-hidden="true"></i></a>
@@ -98,7 +98,7 @@ def footer(cta=True):
           <li><a href="/about">About us</a></li><li><a href="/portfolio">Portfolio</a></li><li><a href="/blog">Blog</a></li><li><a href="/career">Career</a></li><li><a href="/services">All 31 services</a></li><li><a href="/contact">Contact</a></li>
         </ul></div>
         <div><h4>Contact</h4><ul class="footer-links">
-          <li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="tel:+917231873730">{PHONE}</a></li><li><span style="color:var(--text-soft);font-size:.95rem;">Udaipur, Rajasthan 313001, India</span></li>
+          <li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="tel:+917231873730">{PHONE}</a></li><li><span style="color:var(--text-soft);font-size:.95rem;">We work with: <a href="/software-development-company-usa">USA</a> · <a href="/software-development-company-uk">UK</a> · <a href="/software-development-company-australia">Australia</a> · <a href="/software-development-company-europe">Europe</a> · <a href="/app-development-company-dubai">Dubai</a></span></li><li><span style="color:var(--text-soft);font-size:.95rem;">Udaipur, Rajasthan 313001, India</span></li>
         </ul></div>
       </div>
       <div class="footer-bottom">
@@ -111,7 +111,7 @@ def footer(cta=True):
 ORG = {"@context": "https://schema.org", "@type": "ProfessionalService", "@id": SITE + "/#org", "name": "QivaLabs LLP", "alternateName": "QivaLabs", "url": SITE + "/",
        "logo": SITE + "/assets/img/logo.svg", "image": SITE + "/assets/img/og-image.png", "telephone": PHONE, "email": EMAIL,
        "address": {"@type": "PostalAddress", "addressLocality": "Udaipur", "addressRegion": "Rajasthan", "postalCode": "313001", "addressCountry": "IN"},
-       "areaServed": ["IN", "US", "GB", "AE"], "priceRange": "$$",
+       "areaServed": [{"@type": "Country", "name": n} for n in ["United States", "United Kingdom", "Australia", "United Arab Emirates", "Germany", "Netherlands", "Ireland", "France", "India"]], "priceRange": "$$",
        "sameAs": ["https://www.linkedin.com/company/qivalabs", "https://www.instagram.com/qivalabs.ai/", "https://twitter.com/qivalabs"],
        "knowsAbout": ["Website design", "Mobile app development", "Custom software development", "ERP software", "CRM software", "AI automation", "WhatsApp Business API", "Cloud migration", "SEO"]}
 
@@ -257,8 +257,9 @@ LEVELS = [
 ]
 
 FAQ = [
-    ('What does QivaLabs do?', 'QivaLabs is a software development company in Udaipur, Rajasthan. We design and build websites, mobile apps, custom software, ERP and CRM systems, and AI and WhatsApp automation, and we maintain them after launch.'),
-    ('Do you work with businesses outside Udaipur?', 'Yes. Most of our clients are in India, and we also build and run websites for brands in the United States. Everything from the first call to handover can happen online.'),
+    ('What does QivaLabs do?', 'QivaLabs is a software, app and AI development company based in India. We design and build custom software, mobile apps, websites, AI agents and automation for startups and businesses in the USA, UK, Australia, Europe and the UAE, and we maintain them after launch.'),
+    ('Do you work with clients in the US, UK, Australia, Europe and Dubai?', 'Yes, that is our main focus. Brands in the United States such as Wee Care Solutions in Texas and Stashfin run on sites we built. Projects run fully online, with calls in your working hours, quotes in your currency, your NDA signed before the first detailed call, and all code and IP assigned to you.'),
+    ('How do you handle time zones?', 'We are on India time (UTC+5:30). That gives near-full overlap with Dubai, four to five hours with the UK and Europe, your afternoon in Australia, and your morning in the US. Written updates and demo links arrive before your next working day.'),
     ('How quickly will I get a quote?', 'Send us a short brief and you get a written scope, a timeline and a fixed quote within 48 hours. There is no obligation.'),
     ('Can you build an ERP or billing system for a small business?', 'Yes. We build ERP, CRM, inventory and billing software sized for small and mid-sized businesses, and we can start from a ready product like Qiva POS when that saves you money.'),
     ('Do you offer support after the website or app goes live?', 'Yes. We offer maintenance plans (AMC), 24/7 technical support and a named account manager, so the people who built your system also look after it.'),
@@ -278,19 +279,19 @@ def home(posts):
     feat = '\n'.join(work_card(p, i + 1) for i, p in enumerate(PROJECTS[:6]))
     blog = ''.join(post_card(p) for p in posts[:3])
     faq = ''.join(f'<details class="card" data-reveal><summary style="cursor:pointer;font-family:var(--font-heading);font-weight:700;">{q}</summary><p class="mt-2">{a}</p></details>' for q, a in FAQ)
-    services_ticker = ''.join('<span>%s</span>' % t for t in ['Website design', 'Mobile apps', 'ERP software', 'CRM', 'AI chatbots', 'WhatsApp automation', 'E-commerce', 'Cloud migration', 'Cyber security', 'SEO', 'Billing software', 'SaaS'])
+    services_ticker = ''.join('<span>%s</span>' % t for t in ['Custom software', 'Mobile apps', 'AI agents', 'Website design', 'SaaS', 'E-commerce', 'AI chatbots', 'CRM and ERP', 'Cloud migration', 'Automation', 'UI/UX', 'Cyber security'])
     return f'''    <section class="hero home-hero">
       <div class="container split">
         <div class="hero__content">
           <span class="eyebrow" data-reveal>Player 1: your business</span>
           <h1 data-text-reveal>Software that levels up your business.</h1>
-          <p class="lede" data-reveal>QivaLabs is a software, app and website development company in Udaipur. We build websites, mobile apps, ERP and CRM systems and AI automation for businesses across India and abroad.</p>
+          <p class="lede" data-reveal>We build custom software, mobile apps, websites and AI agents for startups and growing businesses in the USA, UK, Australia, Europe and the UAE. One senior team from first call to launch, and a fixed quote within 48 hours.</p>
           <div class="cluster mt-4" data-reveal>
             <a href="/contact" class="btn btn--primary" data-magnetic>Start a project <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
             <a href="/portfolio" class="btn btn--ghost">See the work</a>
           </div>
           <div class="float-badges" data-reveal>
-            <span class="tag tag--lime">60+ projects</span><span class="tag">31 services</span><span class="tag">India · USA</span><span class="tag tag--pink">48h quote</span>
+            <span class="tag tag--lime">60+ projects</span><span class="tag">31 services</span><span class="tag">USA · UK · AU · EU · UAE</span><span class="tag tag--pink">48h quote</span>
           </div>
         </div>
         <div data-reveal>
@@ -316,6 +317,7 @@ def home(posts):
       </div>
     </section>
 
+{regions_section()}
     <section class="section">
       <div class="container">
         <div class="section-head" data-reveal>
@@ -413,7 +415,7 @@ def portfolio_index():
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Portfolio</span></nav>
         <span class="eyebrow" data-reveal>Hall of fame</span>
         <h1 data-text-reveal>Work that's live and running.</h1>
-        <p class="lede" data-reveal>Websites, apps, billing software and AI automation we've designed, built and launched, for clients in India and the USA and for our own products. Every preview plays on loop.</p>
+        <p class="lede" data-reveal>Websites, apps, billing software and AI automation we've designed, built and launched, for clients in the USA and India and for our own products. Every preview plays on loop.</p>
       </div>
     </section>
     <section class="section">
@@ -474,7 +476,7 @@ def blog_index(posts):
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Blog</span></nav>
         <span class="eyebrow" data-reveal>Guides and playbooks</span>
         <h1 data-text-reveal>The QivaLabs blog.</h1>
-        <p class="lede" data-reveal>Plain answers on what software, apps and automation cost, how long they take and which tools fit a growing Indian business.</p>
+        <p class="lede" data-reveal>Plain answers on what software, apps and AI cost, how long they take, and how to hire a development team you can trust.</p>
       </div>
     </section>
     <section class="section">
@@ -531,6 +533,311 @@ def render_post(p, posts):
 '''
 
 # ---------------------------------------------------------------- SEO title overrides
+# ---------------------------------------------------------------- global markets
+# Inserted into site.py. Targets the US, UK, Australia, Europe and the UAE.
+
+AREA_SERVED = [{"@type": "Country", "name": n} for n in
+               ["United States", "United Kingdom", "Australia", "United Arab Emirates", "Germany", "Netherlands", "Ireland", "France", "India"]]
+
+GLOBAL_LINE = 'businesses in the USA, UK, Australia, Europe and the UAE'
+
+# Exact sentence swaps on legacy service/about pages (old India/Udaipur framing -> global).
+GLOBAL_SWAPS = [
+    ('Mobile App Development in Udaipur, India', 'Mobile App Development Company'),
+    ('Custom Software Development in Udaipur', 'Custom Software Development Company'),
+    ('Business Automation Services in Udaipur', 'Business Automation Services'),
+    ('Digital Marketing Services in Udaipur', 'Digital Marketing Services'),
+    ('IT Consulting Services in Udaipur', 'IT Consulting Services'),
+    ('UI/UX Design Services in Udaipur', 'UI/UX Design Services'),
+    ('Cybersecurity Solutions for Businesses in India', 'Cybersecurity Solutions for Growing Businesses'),
+    ('E-commerce Solutions for Indian Businesses', 'E-commerce Development Solutions'),
+    ('Website Design &amp; Development in Udaipur', 'Website Design &amp; Development Company'),
+    ('Website Design & Development in Udaipur', 'Website Design & Development Company'),
+    ('your target customers in Udaipur and across India', 'your target customers, wherever they are'),
+    ('QivaLabs works with businesses across Udaipur and India to identify', 'QivaLabs works with businesses in the US, UK, Australia, Europe, the UAE and India to identify'),
+    ('QivaLabs helps businesses in Udaipur and across India navigate', 'QivaLabs helps businesses in the US, UK, Australia, Europe, the UAE and India navigate'),
+    ('QivaLabs works with SMEs and mid-market companies across Udaipur and India to', 'QivaLabs works with SMEs and mid-market companies in the US, UK, Australia, Europe, the UAE and India to'),
+    ('across Udaipur, Rajasthan, and other', 'in the US, India and other'),
+    ('SMEs in India are frequently targeted', 'Small and mid-sized businesses are frequently targeted'),
+    ('designed for the reality of Indian SME budgets and threat environments', 'designed for the budgets and threat environments of small and mid-sized businesses'),
+    ('DPDP (India\'s Digital Personal Data Protection Act)', 'UK GDPR, Australia\'s Privacy Act, the UAE PDPL or India\'s DPDP Act'),
+    ('development teams across Udaipur and India', 'development teams in the US, UK, Australia, Europe, the UAE and India'),
+    ('Most businesses in Udaipur invest in a website', 'Most small businesses invest in a website'),
+    ('Customers in Udaipur, Rajasthan, and across India search online', 'Customers search online'),
+    ('For local businesses in Udaipur and Rajasthan, we specialise in local SEO tactics', 'For businesses that serve a city or region, we specialise in local SEO tactics'),
+    ('your payment needs become specific to India', 'your payment, tax or shipping needs become specific to your market'),
+    ('E-commerce in India is growing rapidly', 'E-commerce keeps growing in every market we work in'),
+    ('across Udaipur and India.', 'in the US, India and beyond.'),
+    ('We understand the specific considerations of the Indian market:', 'We build for the market you sell in, whether that means Stripe, PayPal and Apple Pay with sales tax or VAT for US, UK and European stores, or, for Indian stores,'),
+    ('where over 70% of Indian e-commerce traffic originates', 'where most e-commerce traffic now comes from'),
+    ('QivaLabs offers independent IT consulting services to businesses in Udaipur and across India.', 'QivaLabs offers independent IT consulting to businesses in the US, UK, Australia, Europe, the UAE and India.'),
+    ('In India\'s rapidly evolving payments landscape, the right', 'The right'),
+    ('We have integration experience with all major Indian payment processors, Razorpay, PayU, Cashfree, CCAvenue, as well as international gateways including Stripe for global businesses',
+     'We integrate Stripe, PayPal and Square for US, UK, European and Australian businesses, and Razorpay, PayU, Cashfree and CCAvenue for Indian ones'),
+    ('This is particularly valuable for established businesses in Udaipur and Rajasthan that have', 'This is particularly valuable for established businesses that have'),
+    ('for businesses across Udaipur and India, from simple', 'for businesses in the US, UK, India and beyond, from simple'),
+    ('We support integration with all major business software used in India: Zoho suite, Tally,', 'We support integration with the business software our clients run: Salesforce, HubSpot, Xero, Zoho, Tally,'),
+    ('We work with businesses across Udaipur, Rajasthan, and throughout India, from local service providers to multi-city enterprises.', 'We work with ' + GLOBAL_LINE + ', from founders with a first product to established companies.'),
+    ('Built in Udaipur.', 'Built in India.'),
+    ('Trusted across India.', 'Shipped for clients worldwide.'),
+    ('businesses in India need reliable, high-quality technology partners', 'growing businesses everywhere need reliable, high-quality technology partners'),
+    ('helping businesses in Udaipur and Rajasthan automate', 'helping businesses automate'),
+]
+GLOBAL_HEADING = re.compile(r'([A-Z][^<>\n]{2,60}?) in Udaipur and across India')
+
+def globalize(main):
+    for a, b in GLOBAL_SWAPS: main = main.replace(a, b)
+    main = GLOBAL_HEADING.sub(lambda m: m.group(1) + ' for US, UK, Australian, European and UAE Businesses', main)
+    return main
+
+def globalize_meta(t):
+    t = re.sub(r' \| QivaLabs Udaipur', ' | QivaLabs', t)
+    t = re.sub(r' \| QivaLabs India', ' | QivaLabs', t)
+    t = re.sub(r'( Udaipur)?( India)?(?= \| QivaLabs)', '', t)
+    t = re.sub(r',? in Udaipur(,? (Rajasthan|India))*', '', t)
+    t = re.sub(r'(across|in|throughout) India', 'in the US, UK, Australia, Europe and the UAE', t)
+    t = t.replace('for Indian businesses', 'for growing businesses').replace('Indian businesses', 'growing businesses')
+    return t
+
+# Global titles for the money pages (title, description).
+GLOBAL_TITLES = {
+    '/services/mobile-app-development': ('Mobile App Development Company | iOS, Android and Flutter Apps | QivaLabs', 'Mobile app development company building iOS, Android and Flutter apps for startups and businesses in the USA, UK, Australia, Europe and Dubai. Senior team, fixed quote in 48 hours.'),
+    '/services/website-design-development': ('Website Design and Development Company | Fast, SEO-Ready Sites | QivaLabs', 'Website design and development for businesses in the USA, UK, Australia, Europe and the UAE. Fast, mobile-first sites built to rank and convert, with a fixed quote in 48 hours.'),
+    '/services/custom-software-development': ('Custom Software Development Company | Web Apps and Platforms | QivaLabs', 'Custom software development for startups and growing businesses in the US, UK, Australia, Europe and the UAE: web apps, portals, internal tools and platforms, built by one senior team.'),
+    '/services/ai-integrated-automation': ('AI Development Company | AI Agents, Chatbots and Automation | QivaLabs', 'AI development company building AI agents, chatbots and workflow automation for businesses in the USA, UK, Australia, Europe and Dubai. From a two-week pilot to production.'),
+    '/services/business-automation': ('Business Automation and WhatsApp Bots | n8n, Make and Custom Workflows | QivaLabs', 'Business automation with n8n, Make, Zapier, custom workflows and the WhatsApp Business API. Order bots, reminders, reporting and CRM sync for teams worldwide.'),
+    '/services/crm-erp-solutions': ('Custom CRM and ERP Development Company | QivaLabs', 'Custom CRM and ERP development and integration for small and mid-sized businesses: sales pipelines, inventory, billing and reporting in one system.'),
+    '/services/saas-product-development': ('SaaS Development Company | MVP to Launch and Scale | QivaLabs', 'SaaS product development for founders in the USA, UK, Australia and Europe: MVP scoping, multi-tenant architecture, subscriptions and launch, with a fixed-price first version.'),
+    '/services/ecommerce-solutions': ('Ecommerce Development Company | Shopify and Custom Stores | QivaLabs', 'Ecommerce development: Shopify and custom online stores with payments, inventory, shipping and multi-currency checkout for brands in the US, UK, Europe, Australia and the UAE.'),
+    '/services/ui-ux-design': ('UI/UX Design Agency | App and Web Product Design | QivaLabs', 'UI/UX design for apps, SaaS products and websites: research, wireframes, design systems and clickable prototypes your developers can build from.'),
+    '/services/enterprise-web-applications': ('Enterprise Web Application Development | QivaLabs', 'Enterprise web application development: secure portals, dashboards and internal platforms with roles, audit trails and integrations.'),
+    '/services/cloud-solutions-migration': ('Cloud Migration Services | AWS, Azure and Google Cloud | QivaLabs', 'Cloud migration and setup on AWS, Azure and Google Cloud, hosted in your region (US, UK, EU, Sydney or UAE) with monitoring, backups and cost alerts.'),
+    '/services/seo-performance-optimization': ('Technical SEO and Website Performance Services | QivaLabs', 'Technical SEO, Core Web Vitals and site speed work for businesses in the USA, UK, Australia and Europe: audits, fixes, schema and content that ranks.'),
+    '/services/digital-marketing': ('Digital Marketing Agency | SEO, Paid Ads and Content | QivaLabs', 'Digital marketing for growing businesses: SEO, Google and Meta ads, content and email, tied to leads and revenue you can measure.'),
+    '/services/cybersecurity-solutions': ('Cyber Security Services for Small Businesses | Audits and Hardening | QivaLabs', 'Cyber security audits, vulnerability scans, website hardening and incident support for small and mid-sized businesses in the US, UK, Australia, Europe and the UAE.'),
+    '/services/dedicated-account-management': ('Dedicated Development Team and Account Manager | QivaLabs', 'Hire a dedicated development team with a named account manager: developers, designers and QA who work as an extension of your company.'),
+    '/services/maintenance-amc': ('Website and App Maintenance Plans | QivaLabs', 'Monthly maintenance plans for websites, apps and software: updates, backups, security patches, monitoring and small changes from the team that knows your code.'),
+    '/services': ('31 Software, App, Web and AI Development Services | QivaLabs', 'All QivaLabs services: software, mobile apps, websites, AI agents and automation, ERP and CRM, cloud, security and support for businesses in the USA, UK, Australia, Europe and the UAE.'),
+    '/about': ('About QivaLabs | Software, App and AI Development Company', 'QivaLabs LLP is a software, app and AI development company based in India, working with startups and businesses in the USA, UK, Australia, Europe and the UAE.'),
+    '/contact': ('Contact QivaLabs | Get a Software, App or AI Quote in 48 Hours', 'Tell QivaLabs what you want to build. Email sales@qivalabs.com or WhatsApp +91 72318 73730. Calls in US, UK, European, Australian and UAE working hours.'),
+}
+
+CONTACT_TZ = '''
+    <section class="section section--alt">
+      <div class="container" style="max-width:62rem;">
+        <div class="section-head" data-reveal><span class="eyebrow">Time zones</span><h2 class="mt-3">We work while you do.</h2>
+          <p>Our team is on India time (UTC+5:30). Here is how that lines up with you. Book a call in your hours and we will be there.</p></div>
+        <div class="card prose" data-reveal>
+          <table>
+            <thead><tr><th>Where you are</th><th>Time difference</th><th>Best time to talk</th></tr></thead>
+            <tbody>
+              <tr><td><a href="/app-development-company-dubai">Dubai and the UAE</a></td><td>We are 1.5 hours ahead</td><td>Any time in your working day</td></tr>
+              <tr><td><a href="/software-development-company-europe">Europe (CET)</a></td><td>We are 3.5 to 4.5 hours ahead</td><td>Your morning to mid-afternoon</td></tr>
+              <tr><td><a href="/software-development-company-uk">United Kingdom</a></td><td>We are 4.5 to 5.5 hours ahead</td><td>Your morning to early afternoon</td></tr>
+              <tr><td><a href="/software-development-company-australia">Australia (Sydney)</a></td><td>We are 4.5 to 5.5 hours behind</td><td>Your afternoon</td></tr>
+              <tr><td><a href="/software-development-company-usa">USA (Eastern)</a></td><td>We are 9.5 to 10.5 hours ahead</td><td>Your morning, our evening</td></tr>
+            </tbody>
+          </table>
+          <p>The range depends on daylight saving in your country.</p>
+        </div>
+      </div>
+    </section>'''
+
+# Overseas client work shown on market pages.
+INTL_WORK = ['wee-care-solutions-kitchen-appliances', 'stashfin-kitchen-appliances', 'storaazi-beauty-catalogue']
+
+MARKETS = [
+  dict(url='/software-development-company-usa', code='US', country='United States', short='USA', flag='US',
+       title='Software Development Company for US Businesses | Apps, Web and AI | QivaLabs',
+       desc='Software, mobile app, website and AI development for US startups and small businesses. Senior team, live US client sites, calls in your morning and a fixed quote in 48 hours.',
+       h1='Software, app and AI development for US businesses.',
+       lede='We build custom software, mobile apps, websites and AI agents for American startups and small businesses. You get one senior team, calls in your morning, and a fixed quote within 48 hours of your first message.',
+       why=[('ph-flag', 'We already ship for US brands', 'Wee Care Solutions in Pottsboro, Texas and the Stashfin kitchenware brand both run on sites we designed and built. You can open them and click around.'),
+            ('ph-clock', 'Your morning is our evening', 'Eastern time is 9.5 to 10.5 hours behind us. We hold calls between 8 and 11 am Eastern, and work continues while you sleep, so feedback you send at night is often done by morning.'),
+            ('ph-currency-dollar', 'Fixed price for a fixed scope', 'You get a written scope, a timeline with milestones and one price. No open-ended hourly billing on a first project.'),
+            ('ph-git-branch', 'You own everything', 'Source code, design files, domains and cloud accounts sit in your name. Weekly demo links show progress as it happens.'),
+            ('ph-robot', 'AI where it pays', 'AI agents, chatbots and automation built on OpenAI, Anthropic or open models, with a short pilot first so you see results before you commit.'),
+            ('ph-chat-circle-dots', 'One team, start to finish', 'The people on your discovery call are the people who design, build and support the product.')],
+       tz='Eastern time is 9.5 hours behind India in summer and 10.5 hours in winter. Pacific time is 12.5 to 13.5 hours behind. In practice we overlap with your morning, and you get updates at the start of your day.',
+       services=['custom-software-development', 'mobile-app-development', 'ai-integrated-automation', 'saas-product-development', 'website-design-development', 'ecommerce-solutions'],
+       law_h='Contracts, data and compliance for US clients',
+       law='''<p>We sign your NDA before we see anything sensitive, and the contract assigns all intellectual property to your company. The US has no single federal privacy law, so we build to the rules that apply to you: California's CCPA and CPRA if you collect data from California residents, HIPAA safeguards if you handle health information, and PCI DSS rules by keeping card data with Stripe or your payment provider rather than on your servers.</p>
+<p>We host in a US region on AWS, Google Cloud, Azure or Vercel, in your account. Accessibility matters too: we design to WCAG 2.2 AA so your site works for every visitor and stands up better to ADA complaints.</p>''',
+       faq=[('Why hire a team in India instead of a US agency?', 'Cost is the obvious reason. 2026 rate surveys put senior US developers at about $75 to $150 or more an hour, against roughly $18 to $45 in India. The real test is delivery: ask any offshore team for live work, references and how they handle time zones. We show you all three before you pay anything.'),
+                ('Can you work with our in-house developers?', 'Yes. We can join your GitHub, Jira or Linear, follow your code review process and work as an extra squad, or take one product end to end.'),
+                ('How do payments work?', 'Usually a deposit to start, then milestone payments as each part is delivered and approved. We invoice in US dollars.'),
+                ('Do you sign NDAs and assign IP?', 'Yes. We sign your NDA before the first detailed call, and the contract assigns all code, designs and content to you.')]),
+  dict(url='/software-development-company-uk', code='GB', country='United Kingdom', short='UK', flag='GB',
+       title='Software and App Development Company for UK Businesses | QivaLabs',
+       desc='Software, app, website and AI development for UK startups and SMEs. UK GDPR-aware contracts, 4 to 5 hours of working-day overlap and a fixed quote in 48 hours.',
+       h1='Software and app development for UK businesses.',
+       lede='We design and build web platforms, mobile apps, websites and AI automation for UK startups, agencies and SMEs. Our working day overlaps yours by four to five hours, and every project starts with a fixed quote.',
+       why=[('ph-clock', 'A real overlap with your day', 'We are 4.5 hours ahead of the UK in summer and 5.5 in winter. Your morning and lunchtime are our afternoon, so stand-ups and reviews happen live.'),
+            ('ph-shield-check', 'UK GDPR from day one', 'We sign a data processing agreement, keep personal data in a UK or EU region, and use the ICO transfer mechanisms when our team needs access.'),
+            ('ph-handshake', 'White label for agencies', 'UK agencies use us as their build team. We work under your brand, in your tools, and never contact your client unless you want us to.'),
+            ('ph-currency-gbp', 'Quotes in pounds', 'Written scope, milestones and a fixed price in GBP. No surprises on the invoice.'),
+            ('ph-git-branch', 'You own the code', 'Repositories, design files and hosting accounts are in your name from the first commit.'),
+            ('ph-robot', 'AI and automation', 'AI agents, chatbots and workflow automation that take repeat work off your team, starting with a short paid pilot.')],
+       tz='The UK is 4.5 hours behind India during British Summer Time and 5.5 hours behind in winter. A 9 am start in London is 1:30 or 2:30 pm for us, so we share the whole of your morning and early afternoon.',
+       services=['custom-software-development', 'website-design-development', 'mobile-app-development', 'ai-integrated-automation', 'ecommerce-solutions', 'dedicated-account-management'],
+       law_h='Contracts, data and UK GDPR',
+       law='''<p>Personal data of UK residents falls under the UK GDPR and the Data Protection Act 2018, and cookies and marketing emails under PECR. India does not have a UK adequacy decision, so when our team needs access to personal data we sign the ICO's International Data Transfer Agreement or the UK Addendum to the EU Standard Contractual Clauses. Better still, the data itself stays in a UK region such as AWS London, in your account.</p>
+<p>The contract assigns all intellectual property to you, we sign your NDA before the first detailed call, and we invoice in pounds.</p>''',
+       faq=[('Can you work as a white-label partner for our agency?', 'Yes, it is one of the most common ways UK agencies work with us. You stay the client contact, and we design and build under your brand.'),
+                ('How do you handle UK GDPR?', 'We sign a data processing agreement, keep production data in a UK or EU region, limit who can access it, and use the ICO transfer agreement for any access from India.'),
+                ('How much cheaper is this than a UK agency?', 'Rate surveys for 2026 put UK and Western European developers at roughly $60 to $120 an hour, and Indian teams at about $18 to $45. Your saving depends on the project, so we give you a fixed quote you can compare like for like.'),
+                ('Will we have the same people throughout?', 'Yes. The team on your discovery call stays on the project.')]),
+  dict(url='/software-development-company-australia', code='AU', country='Australia', short='Australia', flag='AU',
+       title='App and Software Development Company for Australian Businesses | QivaLabs',
+       desc='Mobile apps, websites, custom software and AI automation for Australian startups and SMEs. Your afternoon is our morning, Privacy Act-aware builds and a fixed quote in 48 hours.',
+       h1='App and software development for Australian businesses.',
+       lede='We build mobile apps, websites, custom software and AI automation for Australian startups and small businesses. Your afternoon is our morning, and every project starts with a written scope and a fixed price in AUD.',
+       why=[('ph-sun-horizon', 'Your afternoon, our morning', 'Sydney is 4.5 to 5.5 hours ahead of us. We start our day while you are still at work, so afternoon calls and same-day changes are normal.'),
+            ('ph-currency-circle-dollar', 'Fixed price in AUD', 'One written scope, clear milestones and a fixed price in Australian dollars.'),
+            ('ph-device-mobile', 'Apps that pass review', 'Flutter, React Native or native apps, tested on real devices and taken through App Store and Google Play review for you.'),
+            ('ph-shield-check', 'Privacy Act-aware', 'We build to the Australian Privacy Principles and host in the Sydney or Melbourne cloud region when your data needs to stay onshore.'),
+            ('ph-git-branch', 'You own it all', 'Code, designs, domains and cloud accounts are in your company\'s name.'),
+            ('ph-robot', 'AI and automation', 'AI agents, chatbots and workflow automation, starting with a short pilot so you see the result before a full build.')],
+       tz='Sydney is 5.5 hours ahead of India during Australian daylight saving and 4.5 hours ahead the rest of the year. Perth is 2.5 hours ahead. Your 2 pm in Sydney is our morning, so we overlap with your whole afternoon.',
+       services=['mobile-app-development', 'website-design-development', 'custom-software-development', 'ai-integrated-automation', 'ecommerce-solutions', 'saas-product-development'],
+       law_h='Contracts, data and the Privacy Act',
+       law='''<p>If your business is covered by the Privacy Act 1988, the Australian Privacy Principles apply to how personal information is collected, stored and sent overseas. APP 8 makes you responsible for overseas recipients, so we sign a data handling agreement, keep production data in an Australian cloud region in your account, and limit access to the people who need it. We also design so you can meet the Notifiable Data Breaches scheme if something goes wrong.</p>
+<p>All intellectual property is assigned to you, we sign your NDA before the first detailed call, and invoices are in Australian dollars.</p>''',
+       faq=[('Can you build our app for both iPhone and Android?', 'Yes. Most clients choose Flutter or React Native, so one codebase runs on both platforms. We also take the app through App Store and Google Play review.'),
+                ('Can our data stay in Australia?', 'Yes. We set up hosting in the AWS, Azure or Google Cloud Sydney or Melbourne regions, in your account.'),
+                ('How do meetings work across the time difference?', 'We hold calls in your afternoon, which is our morning. Written updates and demo links arrive before you start your next day.'),
+                ('How do payments work?', 'A deposit to start, then milestone payments as each part is approved. We invoice in AUD.')]),
+  dict(url='/software-development-company-europe', code='EU', country='Europe', short='Europe', flag='EU',
+       title='Software Development Partner for European Businesses | GDPR-Aware | QivaLabs',
+       desc='Software, app, website and AI development for European startups and SMEs in Germany, the Netherlands, Ireland, France and beyond. GDPR-aware, EU hosting, fixed quotes in EUR.',
+       h1='Software development for European businesses.',
+       lede='We build web platforms, mobile apps, online stores and AI automation for startups and SMEs across Europe. Our day overlaps yours by five hours or more, data stays in EU regions, and every project starts with a fixed quote in euros.',
+       why=[('ph-clock', 'Five or more hours of overlap', 'Central European Time is 3.5 to 4.5 hours behind us. Your whole morning and early afternoon are live working time together.'),
+            ('ph-shield-check', 'GDPR built in', 'Data processing agreements, Standard Contractual Clauses for any access from India, and production data kept in an EU region in your account.'),
+            ('ph-wheelchair', 'Accessibility Act ready', 'We design to WCAG 2.2 AA, which helps online stores and digital services meet the European Accessibility Act.'),
+            ('ph-currency-eur', 'Fixed price in EUR', 'Written scope, milestones and one price in euros.'),
+            ('ph-translate', 'Multilingual by default', 'Sites and apps built for several languages and currencies from the start, not bolted on later.'),
+            ('ph-git-branch', 'You own the code', 'Repositories, designs and cloud accounts are in your name from the first day.')],
+       tz='Central European Time (Berlin, Amsterdam, Paris) is 3.5 hours behind India in summer and 4.5 hours in winter. Ireland and Portugal follow UK time, 4.5 to 5.5 hours behind. A 9 am start in Berlin is 12:30 or 1:30 pm for us.',
+       services=['custom-software-development', 'saas-product-development', 'ecommerce-solutions', 'website-design-development', 'ai-integrated-automation', 'mobile-app-development'],
+       law_h='Contracts, data and GDPR',
+       law='''<p>Personal data of people in the EU is covered by the GDPR. India has no EU adequacy decision, so when our team needs access we sign the European Commission's Standard Contractual Clauses alongside a data processing agreement. Production data stays in an EU region such as Frankfurt, Dublin or Amsterdam, in your cloud account.</p>
+<p>The European Accessibility Act has applied since 28 June 2025 to many online shops and digital services, so we design and test to WCAG 2.2 AA. All intellectual property is assigned to you, and invoices are in euros.</p>''',
+       faq=[('Which European countries do you work with?', 'Any of them. Most enquiries come from Germany, the Netherlands, Ireland and France, and we work in English.'),
+                ('How do you handle GDPR when the team is in India?', 'We sign a data processing agreement and the EU Standard Contractual Clauses, keep production data in an EU region, and limit access to named people.'),
+                ('Can you build multilingual sites and stores?', 'Yes. We set up language and currency handling from the start, with translations you or your agency supply.'),
+                ('How is this different from a nearshore team in Eastern Europe?', 'Eastern European rates in 2026 run roughly $45 to $90 an hour for senior developers, India about $18 to $45. You lose an hour or two of overlap. We suggest comparing fixed quotes for the same scope.')]),
+  dict(url='/app-development-company-dubai', code='AE', country='United Arab Emirates', short='Dubai and UAE', flag='AE',
+       title='Mobile App and Website Development Company for Dubai and the UAE | QivaLabs',
+       desc='Mobile app, website, ecommerce and AI development for businesses in Dubai, Abu Dhabi and across the UAE. Arabic and English, near-full working-day overlap, fixed quote in 48 hours.',
+       h1='Mobile app, website and AI development for Dubai and the UAE.',
+       lede='We build mobile apps, websites, online stores and AI chatbots for businesses in Dubai, Abu Dhabi and Sharjah. We are only 1.5 hours ahead of you, we build in Arabic and English, and every project starts with a fixed quote in AED.',
+       why=[('ph-clock', 'Almost the same working day', 'The UAE is 1.5 hours behind India, with no daylight saving. Your whole Monday to Friday is our working day too.'),
+            ('ph-translate', 'Arabic and English', 'Right-to-left layouts, Arabic typography and bilingual content built in from the first screen.'),
+            ('ph-whatsapp-logo', 'WhatsApp-first', 'Customers in the UAE live on WhatsApp. We build WhatsApp ordering, booking and support bots on the official Business API.'),
+            ('ph-storefront', 'Stores that sell', 'Ecommerce sites with local payment gateways, cash on delivery and courier integrations.'),
+            ('ph-currency-circle-dollar', 'Fixed price in AED', 'A written scope, clear milestones and a fixed price in dirhams.'),
+            ('ph-robot', 'AI chatbots and agents', 'AI assistants for real estate, clinics, retail and services that answer in Arabic and English and pass hot leads to your team.')],
+       tz='The UAE runs on Gulf Standard Time (UTC+4) all year, 1.5 hours behind India. Since 2022 the UAE works Monday to Friday, the same week as us, so nearly the whole working day overlaps.',
+       services=['mobile-app-development', 'website-design-development', 'ecommerce-solutions', 'ai-integrated-automation', 'business-automation', 'custom-software-development'],
+       law_h='Contracts, data and UAE rules',
+       law='''<p>Personal data on the UAE mainland is covered by Federal Decree-Law No. 45 of 2021 on the Protection of Personal Data (the PDPL). Companies in the DIFC and ADGM follow their own data protection laws instead. The PDPL's executive regulations had still not been published in 2026, but we build to its principles now: clear consent, limited access and secure hosting, with a UAE cloud region in your account when your data must stay in the country.</p>
+<p>The contract assigns all intellectual property to you, we sign your NDA before the first detailed call, and invoices are in AED.</p>''',
+       faq=[('Do you build apps in Arabic?', 'Yes. We build bilingual Arabic and English apps and websites with proper right-to-left layouts.'),
+                ('Can you integrate UAE payment gateways?', 'Yes. We connect the gateway your bank or provider supports, plus Apple Pay, Google Pay and cash on delivery where you need them.'),
+                ('Do you work with businesses in Abu Dhabi and Sharjah too?', 'Yes, anywhere in the UAE and the wider GCC. Projects run online, with calls in your working hours.'),
+                ('How long does a mobile app take?', 'A first version usually takes 10 to 16 weeks, depending on features. You get a timeline with milestones in the fixed quote.')]),
+]
+
+def market_page(m):
+    why = ''.join(f'<div class="card" data-reveal><span class="card__icon"><i class="ph-bold {ic}" aria-hidden="true"></i></span><h3 class="mt-3">{esc(t)}</h3><p class="mt-2">{esc(b)}</p></div>' for ic, t, b in m['why'])
+    svc_names = dict(FOOT_SERVICES + [('saas-product-development', 'SaaS product development'), ('dedicated-account-management', 'Dedicated development team'), ('ecommerce-solutions', 'E-commerce development')])
+    svcs = ''.join(f'<a class="card product" href="/services/{s}" data-reveal><h3>{esc(svc_names.get(s, s.replace("-", " ").capitalize()))}</h3><span class="tag tag--lime mt-2">See the service</span></a>' for s in m['services'])
+    work = '\n'.join(work_card(p, i + 1) for i, p in enumerate([x for s in INTL_WORK for x in PROJECTS if x['slug'] == s]))
+    faq = ''.join(f'<details class="card" data-reveal><summary style="cursor:pointer;font-family:var(--font-heading);font-weight:700;">{esc(q)}</summary><p class="mt-2">{esc(a)}</p></details>' for q, a in m['faq'])
+    others = ' · '.join(f'<a href="{x["url"]}">{x["short"]}</a>' for x in MARKETS if x['url'] != m['url'])
+    return f'''    <section class="hero">
+      <div class="container hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / <span>{esc(m['short'])}</span></nav>
+        <span class="eyebrow" data-reveal>Region select: {esc(m['short'])}</span>
+        <h1 data-text-reveal>{esc(m['h1'])}</h1>
+        <p class="lede" data-reveal>{esc(m['lede'])}</p>
+        <div class="cluster mt-4" data-reveal><a href="/contact" class="btn btn--primary" data-magnetic>Get a fixed quote <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a><a href="/portfolio" class="btn btn--ghost">See the work</a></div>
+        <div class="float-badges" data-reveal><span class="tag tag--lime">48h quote</span><span class="tag">You own the code</span><span class="tag tag--pink">Senior team</span></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="section-head" data-reveal><span class="eyebrow">Why us</span><h2 class="mt-3">Why {esc(m['short'])} companies work with us.</h2></div>
+        <div class="grid grid--3" data-reveal-group>{why}</div>
+      </div>
+    </section>
+    <section class="section section--deep">
+      <div class="container" style="max-width:56rem;">
+        <div class="section-head" data-reveal><span class="eyebrow">Time zones</span><h2 class="mt-3">How our hours line up with yours.</h2></div>
+        <p class="lede" data-reveal>{esc(m['tz'])}</p>
+        <p class="mt-3" data-reveal>Full table on the <a href="/contact">contact page</a>.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="section-head" data-reveal><span class="eyebrow">Most requested</span><h2 class="mt-3">What {esc(m['short'])} clients ask us to build.</h2></div>
+        <div class="grid grid--3" data-reveal-group>{svcs}</div>
+      </div>
+    </section>
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head" data-reveal><span class="eyebrow">Overseas clients</span><h2 class="mt-3">Live work for clients outside India.</h2><p>Hover a preview to pause it. Click to read the case study.</p></div>
+        <div class="work-grid">
+{work}
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container" style="max-width:56rem;">
+        <div class="section-head" data-reveal><span class="eyebrow">The fine print</span><h2 class="mt-3">{esc(m['law_h'])}</h2></div>
+        <div class="prose" data-reveal>{m['law']}
+<p>Want the numbers first? Read our guides to <a href="/blog/outsourcing-software-development-to-india-guide">outsourcing software development to India</a> and <a href="/blog/app-development-cost-2026">app development cost in 2026</a>.</p></div>
+      </div>
+    </section>
+    <section class="section section--alt">
+      <div class="container" style="max-width:56rem;">
+        <div class="section-head" data-reveal><span class="eyebrow">FAQ</span><h2 class="mt-3">Questions {esc(m['short'])} clients ask.</h2></div>
+        <div class="stack">{faq}</div>
+        <p class="mt-4" style="font-size:.95rem;">Other regions: {others}</p>
+      </div>
+    </section>
+    <section class="section section--amber">
+      <div class="container text-center">
+        <p class="pixel" style="font-size:.8rem;">INSERT COIN TO CONTINUE</p>
+        <h2 class="mt-2">Tell us what you want to build.</h2>
+        <p class="lede mt-2">Send a short brief. You get a written scope, a timeline and a fixed price within 48 hours.</p>
+        <div class="cluster mt-4" style="justify-content:center;"><a href="/contact" class="btn btn--primary">Start a project</a><a href="mailto:{EMAIL}" class="btn btn--ghost">Email {EMAIL}</a></div>
+      </div>
+    </section>'''
+
+def market_ld(m):
+    area = {"@type": "Country", "name": m['country']} if m['code'] != 'EU' else [{"@type": "Country", "name": n} for n in ["Germany", "Netherlands", "Ireland", "France", "Spain", "Italy", "Belgium", "Sweden"]]
+    return [breadcrumbs([('Home', '/'), (m['short'], m['url'])]),
+            {"@context": "https://schema.org", "@type": "Service", "name": m['h1'].rstrip('.'), "serviceType": "Software, mobile app, website and AI development", "provider": {"@id": SITE + "/#org"}, "areaServed": area, "url": SITE + m['url'], "description": m['desc']},
+            {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in m['faq']]}]
+
+def regions_section():
+    cards = ''.join(f'<a class="card product" href="{m["url"]}" data-reveal><span class="pixel" style="font-size:.7rem;color:var(--lime);">REGION {i + 1:02d}</span><h3 class="mt-2">{esc(m["short"])}</h3><p>{esc(m["tz"].split(". ")[0])}.</p></a>' for i, m in enumerate(MARKETS))
+    cards += '<a class="card product" href="/contact" data-reveal><span class="pixel" style="font-size:.7rem;color:var(--pink);">ANYWHERE ELSE</span><h3 class="mt-2">Somewhere else?</h3><p>We work fully online. Send a brief and we will find hours that suit you.</p></a>'
+    return f'''
+    <section class="section section--deep">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Choose your region</span>
+          <h2 class="mt-3">Built in India. Shipped worldwide.</h2>
+          <p>Our focus is clients in the USA, UK, Australia, Europe and the UAE. Pick your region to see time zones, contracts and the work we have shipped for overseas clients.</p>
+        </div>
+        <div class="grid grid--3" data-reveal-group>{cards}</div>
+      </div>
+    </section>
+'''
+
 TITLES = {
     '/services/mobile-app-development': ('Mobile App Development Company in Udaipur | Android and iOS | QivaLabs', 'Mobile app development company in Udaipur building Android, iOS and cross-platform apps for startups and businesses across Rajasthan and India. Get a fixed quote in 48 hours.'),
     '/services/website-design-development': ('Website Design and Development Company in Udaipur | QivaLabs', 'Website design and development company in Udaipur. Fast, mobile-first business websites, landing pages and e-commerce stores built to rank on Google and turn visitors into leads.'),
@@ -560,7 +867,7 @@ def build():
     skip = {'index.html', '404.html', 'portfolio/index.html'}
     for f in sorted(ROOT.rglob('*.html')):
         rel = f.relative_to(ROOT).as_posix()
-        if rel.startswith(('node_modules/', 'tools/', 'blog/', 'server/', 'content/')) or rel in skip: continue
+        if rel.startswith(('node_modules/', 'tools/', 'blog/', 'server/', 'content/')) or rel in skip or '/' + rel[:-5] in [m['url'] for m in MARKETS]: continue
         s = f.read_text()
         main = extract(s, r'<main id="main">\n?(.*?)\n?\s*</main>')
         if not main: print('no main', rel); continue
@@ -568,10 +875,17 @@ def build():
         title = html.unescape(extract(s, r'<title>(.*?)</title>'))
         desc = html.unescape(extract(s, r'<meta name="description" content="(.*?)"'))
         if url in TITLES: title, desc = TITLES[url]
+        if url in GLOBAL_TITLES: title, desc = GLOBAL_TITLES[url]
+        elif rel.startswith('services/') or rel in ('about.html', 'contact.html'): title, desc = globalize_meta(title), globalize_meta(desc)
         lds = re.findall(r'<script type="application/ld\+json">(.*?)</script>', s, re.S)
         lds = [fix_links(x) for x in lds]
         robots = extract(s, r'<meta name="robots" content="(.*?)"') or 'index, follow'
         main = fix_links(main)
+        if rel.startswith('services/') or rel in ('about.html', 'contact.html'):
+            main = globalize(main)
+            lds = [globalize(x).replace('"areaServed":"IN"', '"areaServed":' + json.dumps(AREA_SERVED)) for x in lds]
+        if rel == 'contact.html':
+            main = re.sub(r'\s*<section class="section section--alt">\s*<div class="container" style="max-width:62rem;">\s*<div class="section-head" data-reveal><span class="eyebrow">Time zones</span>.*?</section>', '', main, flags=re.S) + CONTACT_TZ
         # animated preview on case-study pages
         if rel.startswith('portfolio/'):
             slug = rel[len('portfolio/'):-5]
@@ -587,30 +901,34 @@ def build():
         out = page(url, title, desc, main, lds, og_image=ogi, robots=robots)
         f.write_text(out)
         if 'noindex' not in robots: written.append(url)
+    # market pages
+    for m in MARKETS:
+        (ROOT / (m['url'].strip('/') + '.html')).write_text(page(m['url'], m['title'], m['desc'], market_page(m), market_ld(m)))
+        written.append(m['url'])
     # home
     ld_home = [ORG, {"@context": "https://schema.org", "@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": "QivaLabs", "publisher": {"@id": SITE + "/#org"}},
                {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}]
-    (ROOT / 'index.html').write_text(page('/', 'QivaLabs | Software, App and Website Development Company in Udaipur',
-        'QivaLabs is a software, mobile app and website development company in Udaipur, Rajasthan. ERP and CRM software, AI and WhatsApp automation and SEO for businesses across India.', home(posts), ld_home))
+    (ROOT / 'index.html').write_text(page('/', 'QivaLabs | Software, App and AI Development Company for US, UK and UAE Businesses',
+        'QivaLabs builds custom software, mobile apps, websites and AI agents for startups and businesses in the USA, UK, Australia, Europe and Dubai. Senior team, live overseas client work, fixed quote in 48 hours.', home(posts), ld_home))
     written.insert(0, '/')
     # portfolio index
     ld_pf = [breadcrumbs([('Home', '/'), ('Portfolio', '/portfolio')]), {"@context": "https://schema.org", "@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": SITE + '/portfolio/' + p['slug'], "name": p['name']} for i, p in enumerate(PROJECTS)]}]
-    (ROOT / 'portfolio' / 'index.html').write_text(page('/portfolio', 'Portfolio | Websites, Apps and Software We Built | QivaLabs Udaipur',
-        'QivaLabs portfolio: live websites, mobile apps, billing software, school software and AI automation built for clients in India and the USA. Every project shown with an animated preview.', portfolio_index(), ld_pf))
+    (ROOT / 'portfolio' / 'index.html').write_text(page('/portfolio', 'Portfolio | Websites, Apps and Software We Built | QivaLabs',
+        'QivaLabs portfolio: live websites, mobile apps, billing software, school software and AI automation built for clients in the USA and India. Every project shown with an animated preview.', portfolio_index(), ld_pf))
     written.append('/portfolio')
     # blog
     bdir = ROOT / 'blog'; bdir.mkdir(exist_ok=True)
     for old in bdir.glob('*.html'): old.unlink()
     ld_b = [breadcrumbs([('Home', '/'), ('Blog', '/blog')]), {"@context": "https://schema.org", "@type": "Blog", "name": "QivaLabs Blog", "url": SITE + "/blog", "publisher": {"@id": SITE + "/#org"}}]
-    (bdir / 'index.html').write_text(page('/blog', 'Blog | Software, App and Automation Guides for Indian Businesses | QivaLabs',
-        'Guides from QivaLabs on software development cost in India, mobile app development in Udaipur, ERP vs CRM, cloud migration, WhatsApp automation and billing software.', blog_index(posts), ld_b))
+    (bdir / 'index.html').write_text(page('/blog', 'Blog | Software, App and AI Development Guides | QivaLabs',
+        'Guides from QivaLabs on app and software development cost, AI agents, outsourcing to India, ERP vs CRM, cloud migration and automation, for businesses in the US, UK, Australia, Europe and the UAE.', blog_index(posts), ld_b))
     written.append('/blog')
     for p in posts:
         url = '/blog/' + p['slug']
         ld = [breadcrumbs([('Home', '/'), ('Blog', '/blog'), (p['title'], url)]),
               {"@context": "https://schema.org", "@type": "BlogPosting", "headline": p['title'], "description": p['description'], "datePublished": p['date'], "dateModified": p.get('updated', p['date']),
                "author": {"@type": "Person", "name": "Rajamuddin", "jobTitle": "Founder and CTO", "url": SITE + "/about"}, "publisher": {"@id": SITE + "/#org"},
-               "mainEntityOfPage": SITE + url, "image": SITE + "/assets/img/og-image.png", "keywords": p.get('keywords', ''), "articleSection": p['category'], "inLanguage": "en-IN"}]
+               "mainEntityOfPage": SITE + url, "image": SITE + "/assets/img/og-image.png", "keywords": p.get('keywords', ''), "articleSection": p['category'], "inLanguage": "en"}]
         (bdir / (p['slug'] + '.html')).write_text(page(url, p['seo_title'], p['description'], render_post(p, posts), ld, og_type='article'))
         written.append(url)
     # 404
@@ -625,7 +943,7 @@ def build():
     </section>'''
     (ROOT / '404.html').write_text(page('/404', 'Page not found | QivaLabs', 'This page could not be found.', nf, robots='noindex, follow'))
     # sitemap
-    pri = lambda u: '1.0' if u == '/' else ('0.9' if u in ('/services', '/portfolio', '/contact', '/blog') or u in TITLES else ('0.8' if u.startswith(('/services/', '/blog/')) else '0.6'))
+    pri = lambda u: '1.0' if u == '/' else ('0.9' if u in ('/services', '/portfolio', '/contact', '/blog') or u in TITLES or u in GLOBAL_TITLES or u in [m['url'] for m in MARKETS] else ('0.8' if u.startswith(('/services/', '/blog/')) else '0.6'))
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     seen = set()
     for u in written:
@@ -634,8 +952,9 @@ def build():
     sm.append('</urlset>'); (ROOT / 'sitemap.xml').write_text('\n'.join(sm) + '\n')
     (ROOT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /demo/\n\nSitemap: {SITE}/sitemap.xml\n')
     # llms.txt
-    lines = ['# QivaLabs', '', '> QivaLabs LLP is a software, mobile app and website development company in Udaipur, Rajasthan, India. It builds websites, mobile apps, custom software, ERP and CRM systems, billing software and AI and WhatsApp automation for businesses in India and abroad. Contact: ' + EMAIL + ', ' + PHONE + '.', '', '## Key pages']
+    lines = ['# QivaLabs', '', '> QivaLabs LLP is a software, mobile app, website and AI development company based in Udaipur, India. It builds custom software, mobile apps, websites, SaaS products, AI agents and automation for startups and businesses in the USA, UK, Australia, Europe and the UAE, as well as India. Contact: ' + EMAIL + ', ' + PHONE + '.', '', '## Key pages']
     for u in ['/services', '/portfolio', '/blog', '/about', '/contact']: lines.append(f'- [{u.strip("/").title()}]({SITE}{u})')
+    lines += ['', '## Regions'] + [f'- [{m["h1"].rstrip(".")}]({SITE}{m["url"]})' for m in MARKETS]
     lines += ['', '## Services'] + [f'- [{t}]({SITE}/services/{s})' for s, t in FOOT_SERVICES] + ['', '## Articles'] + [f'- [{p["title"]}]({SITE}/blog/{p["slug"]})' for p in posts]
     (ROOT / 'llms.txt').write_text('\n'.join(lines) + '\n')
     print('pages', len(written), 'posts', len(posts))
