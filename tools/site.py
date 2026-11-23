@@ -14,7 +14,7 @@ import markdown
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = 'https://www.qivalabs.com'
 TODAY = datetime.date.today().isoformat()
-CSS_V = '20261123b'
+CSS_V = '20261123c'
 EMAIL = 'sales@qivalabs.com'
 PHONE = '+91 72318 73730'
 
@@ -543,6 +543,7 @@ GLOBAL_LINE = 'businesses in the USA, UK, Australia, Europe and the UAE'
 
 # Exact sentence swaps on legacy service/about pages (old India/Udaipur framing -> global).
 GLOBAL_SWAPS = [
+    (' for US, UK, Australian, European and UAE Businesses', ' for Businesses Worldwide'),
     ('Mobile App Development in Udaipur, India', 'Mobile App Development Company'),
     ('Custom Software Development in Udaipur', 'Custom Software Development Company'),
     ('Business Automation Services in Udaipur', 'Business Automation Services'),
@@ -587,7 +588,7 @@ GLOBAL_HEADING = re.compile(r'([A-Z][^<>\n]{2,60}?) in Udaipur and across India'
 
 def globalize(main):
     for a, b in GLOBAL_SWAPS: main = main.replace(a, b)
-    main = GLOBAL_HEADING.sub(lambda m: m.group(1) + ' for US, UK, Australian, European and UAE Businesses', main)
+    main = GLOBAL_HEADING.sub(lambda m: m.group(1) + ' for Businesses Worldwide', main)
     return main
 
 def globalize_meta(t):

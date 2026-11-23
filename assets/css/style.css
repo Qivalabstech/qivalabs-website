@@ -520,3 +520,53 @@ a.card:hover, .card--hover:hover, .card.service-item:hover, .card.portfolio-item
 .prose a.btn--primary { color: var(--bg); }
 .prose a.btn--primary:hover { color: var(--bg); }
 .prose a.btn--ghost { color: var(--text, #F4F4F0); }
+
+/* ---------------------------------------------------------------- mobile fixes (Nov 2026) */
+.grid > *, .split > *, .article > *, .work-grid > *, .footer-grid > * { min-width: 0; }
+.prose { overflow-wrap: break-word; }
+.prose a { overflow-wrap: anywhere; }
+.prose table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.prose table th, .prose table td { min-width: 8.5rem; }
+.article { grid-template-columns: minmax(0, 1fr) 16rem; }
+img, video, canvas, iframe { max-width: 100%; }
+@media (max-width: 960px) {
+  .article { grid-template-columns: minmax(0, 1fr); }
+  .container.grid[style*="grid-template-columns"] { grid-template-columns: minmax(0, 1fr) !important; gap: 2rem !important; }
+}
+@media (max-width: 640px) {
+  html { -webkit-text-size-adjust: 100%; }
+  .container { padding-left: 1.1rem; padding-right: 1.1rem; }
+  .section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  h1 { font-size: clamp(2.1rem, 9.5vw, 2.9rem); line-height: 1.05; overflow-wrap: break-word; }
+  h2 { font-size: clamp(1.6rem, 7vw, 2.1rem); line-height: 1.1; }
+  .lede { font-size: 1.05rem; }
+  .tag, .eyebrow, .breadcrumb, .post-card__meta, .work-card__kind, .pixel { font-size: max(12px, .75rem) !important; }
+  .field label, label { font-size: .85rem; }
+  input, select, textarea { font-size: 16px !important; min-height: 48px; }
+  textarea { min-height: 130px; }
+  .btn { min-height: 48px; }
+  .cluster .btn { flex: 1 1 100%; justify-content: center; }
+  .breadcrumb a, .breadcrumb span { display: inline-block; padding: .35rem 0; }
+  .site-footer a, .footer-grid a { display: inline-block; padding: .55rem 0; }
+  .footer-grid li { margin: 0; }
+  .filter-btn { min-height: 44px; padding-left: 1rem; padding-right: 1rem; font-size: .85rem; }
+  .play-btn, .hud-coins { min-height: 40px; min-width: 40px; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+  .card { padding: 1.25rem; }
+  .levels, .quest { grid-template-columns: minmax(0, 1fr); }
+  .toc { display: none; }
+  .prose { font-size: 1.02rem; }
+  .prose a, .prose p a { padding: .15rem 0; }
+  .cabinet { margin-left: -.25rem; margin-right: -.25rem; }
+  .game-modal .cabinet { width: 100%; }
+  .float-badges { flex-wrap: wrap; gap: .5rem; }
+  .section-head { margin-bottom: 1.75rem; }
+}
+@media (max-width: 380px) {
+  .brand { font-size: .98rem; gap: .45rem; }
+  .hud-coins { padding-left: .5rem; padding-right: .5rem; }
+}
+@media (max-width: 640px) {
+  h1 { font-size: clamp(2rem, 8.6vw, 2.8rem); }
+  .container.grid[style*="2fr 3fr"] > :last-child { order: -1; }
+}

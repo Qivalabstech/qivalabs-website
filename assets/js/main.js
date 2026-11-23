@@ -291,6 +291,7 @@
         .then(function (res) {
           if (!res.ok) throw new Error('Request failed');
           form.reset();
+          if (window.gtag) { try { window.gtag('event', 'generate_lead', { form: endpoint }); } catch (e) {} }
           if (statusEl) {
             statusEl.textContent = "Thanks. We'll be in touch within 48 hours.";
             statusEl.classList.add('form-status--success');
@@ -298,8 +299,11 @@
           }
         })
         .catch(function () {
+          var lines = Object.keys(data).filter(function (k) { return data[k]; }).map(function (k) { return k + ': ' + data[k]; }).join('\n');
+          var mail = 'mailto:sales@qivalabs.com?subject=' + encodeURIComponent('Website enquiry from ' + (data.name || data.applicant_name || 'website')) + '&body=' + encodeURIComponent(lines);
+          var wa = 'https://wa.me/917231873730?text=' + encodeURIComponent(lines);
           if (statusEl) {
-            statusEl.textContent = 'Something went wrong. Please email us directly at hello@qivalabs.com.';
+            statusEl.innerHTML = 'We could not send this automatically. Your details are kept below, tap one to send them in one step: <a href="' + mail + '">Email sales@qivalabs.com</a> or <a href="' + wa + '" target="_blank" rel="noopener">WhatsApp us</a>.';
             statusEl.classList.add('form-status--error');
             statusEl.hidden = false;
           }
