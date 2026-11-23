@@ -1,0 +1,28 @@
+# QivaLabs
+
+> QivaLabs LLP is a software, mobile app and website development company in Udaipur, Rajasthan, India. It builds websites, mobile apps, custom software, ERP and CRM systems, billing software and AI and WhatsApp automation for businesses in India and abroad. Contact: sales@qivalabs.com, +91 72318 73730.
+
+## Key pages
+- [Services](https://www.qivalabs.com/services)
+- [Portfolio](https://www.qivalabs.com/portfolio)
+- [Blog](https://www.qivalabs.com/blog)
+- [About](https://www.qivalabs.com/about)
+- [Contact](https://www.qivalabs.com/contact)
+
+## Services
+- [Website design and development](https://www.qivalabs.com/services/website-design-development)
+- [Mobile app development](https://www.qivalabs.com/services/mobile-app-development)
+- [Custom software development](https://www.qivalabs.com/services/custom-software-development)
+- [CRM and ERP software](https://www.qivalabs.com/services/crm-erp-solutions)
+- [AI automation and chatbots](https://www.qivalabs.com/services/ai-integrated-automation)
+- [WhatsApp and business automation](https://www.qivalabs.com/services/business-automation)
+- [E-commerce development](https://www.qivalabs.com/services/ecommerce-solutions)
+- [SEO and performance](https://www.qivalabs.com/services/seo-performance-optimization)
+
+## Articles
+- [Billing software for restaurants and shops in India: what to look for before you buy](https://www.qivalabs.com/blog/billing-software-restaurants-shops-india)
+- [Cloud migration for small businesses in India: when it's worth it and what it costs](https://www.qivalabs.com/blog/cloud-migration-guide-small-indian-businesses)
+- [Mobile app development in Udaipur: what it costs, how long it takes and how to pick a company](https://www.qivalabs.com/blog/mobile-app-development-cost-timeline-rajasthan)
+- [CRM vs ERP: which one does a small business in India actually need?](https://www.qivalabs.com/blog/crm-vs-erp-which-does-your-business-need)
+- [WhatsApp Business API automation for wholesale and mandi businesses: a practical guide](https://www.qivalabs.com/blog/whatsapp-business-api-automation-wholesale-mandi)
+- [Custom software development cost in India (2026): real price ranges and red flags](https://www.qivalabs.com/blog/custom-software-development-cost-india-2026)

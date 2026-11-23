@@ -4,19 +4,119 @@
   "installCommand": null,
   "outputDirectory": ".",
   "rewrites": [
-    { "source": "/admin", "destination": "https://qivalabs-admin.vercel.app/admin" },
-    { "source": "/admin/:path*", "destination": "https://qivalabs-admin.vercel.app/admin/:path*" },
-    { "source": "/demo/cafe-menu", "destination": "https://qivalabs-cafe-demo.vercel.app" },
-    { "source": "/demo/cafe-menu/:path*", "destination": "https://qivalabs-cafe-demo.vercel.app/:path*" }
+    {
+      "source": "/admin",
+      "destination": "https://qivalabs-admin.vercel.app/admin"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "https://qivalabs-admin.vercel.app/admin/:path*"
+    },
+    {
+      "source": "/demo/cafe-menu",
+      "destination": "https://qivalabs-cafe-demo.vercel.app"
+    },
+    {
+      "source": "/demo/cafe-menu/:path*",
+      "destination": "https://qivalabs-cafe-demo.vercel.app/:path*"
+    }
   ],
   "headers": [
     {
       "source": "/admin/:path*",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     },
     {
       "source": "/demo/:path*",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/services/ai-crm-automation",
+      "destination": "/portfolio/ai-crm-automation",
+      "permanent": true
+    },
+    {
+      "source": "/services/mandi-whatsapp-automation",
+      "destination": "/portfolio/qiva-bot-mandi-whatsapp-automation",
+      "permanent": true
+    },
+    {
+      "source": "/careers",
+      "destination": "/career",
+      "permanent": true
+    },
+    {
+      "source": "/career/business-development-associate",
+      "destination": "/career",
+      "permanent": true
+    },
+    {
+      "source": "/terms-and-conditions",
+      "destination": "/terms-of-service",
+      "permanent": true
+    },
+    {
+      "source": "/disclaimer",
+      "destination": "/terms-of-service",
+      "permanent": true
+    },
+    {
+      "source": "/enroll",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/sitemap-page",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/ai-chatbot-development-small-businesses-india",
+      "destination": "/services/ai-integrated-automation",
+      "permanent": true
+    },
+    {
+      "source": "/blog/loan-origination-software-features-nbfc-lending",
+      "destination": "/services/loan-origination-software",
+      "permanent": true
+    },
+    {
+      "source": "/blog/n8n-vs-zapier-vs-make-business-automation-2026",
+      "destination": "/services/business-automation",
+      "permanent": true
+    },
+    {
+      "source": "/blog/seo-local-service-businesses-udaipur-checklist",
+      "destination": "/services/seo-performance-optimization",
+      "permanent": true
+    },
+    {
+      "source": "/blog/website-design-development-company-udaipur",
+      "destination": "/services/website-design-development",
+      "permanent": true
     }
   ]
 }
