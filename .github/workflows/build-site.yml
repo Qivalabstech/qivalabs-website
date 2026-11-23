@@ -1,0 +1,41 @@
+name: Build site
+
+# Rebuilds the static pages when blog posts or the builder change, for example
+# when a post is published from the admin panel. Vercel then deploys the commit.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/posts/**'
+      - 'tools/site.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-site
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install "markdown==3.11.*"
+      - run: python3 tools/site.py
+      - name: Commit built pages
+        run: |
+          if git diff --quiet; then
+            echo "Nothing to commit"
+            exit 0
+          fi
+          git config user.name "qivalabs-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "Rebuild site after content change"
+          git pull --rebase origin main
+          git push origin HEAD:main

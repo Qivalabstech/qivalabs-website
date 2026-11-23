@@ -268,13 +268,25 @@
 
   document.querySelectorAll('form[data-lead-form]').forEach(function (form) {
     var endpoint = form.getAttribute('data-lead-form');
-    var statusEl = form.querySelector('[data-form-status]');
+    if (!form.querySelector('[name="website_hp"]')) {
+      var hp = document.createElement('div');
+      hp.setAttribute('aria-hidden', 'true');
+      hp.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;';
+      hp.innerHTML = '<label>Leave this empty<input type="text" name="website_hp" tabindex="-1" autocomplete="off"></label>';
+      form.appendChild(hp);
+    }
+    var statusEl = form.querySelector('[data-form-status]') || (form.parentElement && form.parentElement.querySelector('[data-form-status]'));
     var submitBtn = form.querySelector('button[type="submit"]');
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var data = {};
       new FormData(form).forEach(function (value, key) { data[key] = value; });
+      data.page = location.href;
+      try {
+        var utm = JSON.parse(sessionStorage.getItem('qv_utm') || '{}');
+        Object.keys(utm).forEach(function (k) { if (!data[k]) data[k] = utm[k]; });
+      } catch (err) {}
 
       if (statusEl) { statusEl.hidden = true; statusEl.className = 'form-status'; }
       if (submitBtn) {
@@ -289,17 +301,27 @@
         body: JSON.stringify(data),
       })
         .then(function (res) {
+          if (res.status === 400) {
+            return res.json().catch(function () { return {}; }).then(function (j) {
+              var e = new Error(j.error || 'Please check the form.'); e.validation = true; throw e;
+            });
+          }
           if (!res.ok) throw new Error('Request failed');
           form.reset();
           if (window.gtag) { try { window.gtag('event', 'generate_lead', { form: endpoint }); } catch (e) {} }
           if (statusEl) {
-            statusEl.textContent = "Thanks. We'll be in touch within 48 hours.";
+            statusEl.textContent = endpoint.indexOf('career') > -1 ? 'Thanks, your application is in. We will reply if it is a fit.' : "Thanks. We'll be in touch within 48 hours.";
             statusEl.classList.add('form-status--success');
             statusEl.hidden = false;
+            statusEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
         })
-        .catch(function () {
-          var lines = Object.keys(data).filter(function (k) { return data[k]; }).map(function (k) { return k + ': ' + data[k]; }).join('\n');
+        .catch(function (err) {
+          if (err && err.validation) {
+            if (statusEl) { statusEl.textContent = err.message; statusEl.classList.add('form-status--error'); statusEl.hidden = false; }
+            return;
+          }
+          var lines = Object.keys(data).filter(function (k) { return data[k] && k !== 'website_hp' && k.indexOf('utm_') !== 0 && k !== 'page'; }).map(function (k) { return k + ': ' + data[k]; }).join('\n');
           var mail = 'mailto:sales@qivalabs.com?subject=' + encodeURIComponent('Website enquiry from ' + (data.name || data.applicant_name || 'website')) + '&body=' + encodeURIComponent(lines);
           var wa = 'https://wa.me/917231873730?text=' + encodeURIComponent(lines);
           if (statusEl) {
@@ -313,6 +335,107 @@
         });
     });
   });
+
+
+  /* ---- Remember UTM tags from the landing page for the lead form -------- */
+  try {
+    var qs = new URLSearchParams(location.search), utmSeen = {};
+    ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (k) { if (qs.get(k)) utmSeen[k] = qs.get(k).slice(0, 100); });
+    if (Object.keys(utmSeen).length) sessionStorage.setItem('qv_utm', JSON.stringify(utmSeen));
+  } catch (err) {}
+
+  var ADMIN_API = window.QIVA_ADMIN_API || '/admin/api/public';
+  function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+  /* ---- Site settings from the admin (announcement, hiring badge, contact) */
+  function applySettings(st) {
+    if (!st) return;
+    var a = st.announcement || {};
+    var dismissed = '';
+    try { dismissed = localStorage.getItem('qv_ann_x') || ''; } catch (err) {}
+    if (a.enabled && a.text && dismissed !== a.text && !document.querySelector('.announce')) {
+      var bar = document.createElement('div');
+      bar.className = 'announce';
+      bar.innerHTML = '<div class="container announce__in"><span>' + esc(a.text) + '</span>' +
+        (a.link ? ' <a href="' + esc(a.link) + '">' + esc(a.link_text || 'Learn more') + ' &rarr;</a>' : '') +
+        '<button type="button" class="announce__x" aria-label="Dismiss">&times;</button></div>';
+      document.body.insertBefore(bar, document.body.firstChild);
+      bar.querySelector('.announce__x').addEventListener('click', function () {
+        bar.remove();
+        try { localStorage.setItem('qv_ann_x', a.text); } catch (err) {}
+      });
+    }
+    var h = st.hiring || {};
+    if (h.enabled) {
+      document.querySelectorAll('.nav-links a[href="/career"], .mobile-menu a[href="/career"]').forEach(function (l) {
+        if (!l.querySelector('.hiring-dot')) l.insertAdjacentHTML('beforeend', ' <span class="hiring-dot" title="' + esc(h.text || 'We are hiring') + '">Hiring</span>');
+      });
+    }
+    var c = st.contact || {};
+    if (c.email && c.email !== 'sales@qivalabs.com') {
+      document.querySelectorAll('a[href^="mailto:sales@qivalabs.com"]').forEach(function (l) {
+        l.href = l.href.replace('sales@qivalabs.com', c.email);
+        if (l.textContent.indexOf('sales@qivalabs.com') > -1) l.textContent = l.textContent.replace('sales@qivalabs.com', c.email);
+      });
+    }
+    if (c.whatsapp && c.whatsapp !== '917231873730') {
+      document.querySelectorAll('a[href*="wa.me/917231873730"]').forEach(function (l) { l.href = l.href.replace('917231873730', c.whatsapp.replace(/\D/g, '')); });
+    }
+    if (c.phone && c.phone !== '+91 72318 73730') {
+      document.querySelectorAll('a[href^="tel:"]').forEach(function (l) {
+        if (l.textContent.indexOf('72318') > -1) l.textContent = c.phone;
+        l.href = 'tel:' + c.phone.replace(/[^\d+]/g, '');
+      });
+    }
+  }
+  try {
+    var cached = JSON.parse(sessionStorage.getItem('qv_settings') || 'null');
+    if (cached && Date.now() - cached.t < 5 * 60 * 1000) applySettings(cached.v);
+    else fetch(ADMIN_API + '/settings').then(function (r) { return r.ok ? r.json() : null; }).then(function (v) {
+      if (!v) return;
+      try { sessionStorage.setItem('qv_settings', JSON.stringify({ t: Date.now(), v: v })); } catch (err) {}
+      applySettings(v);
+    }).catch(function () {});
+  } catch (err) {}
+
+  /* ---- Career page: live roles from the admin --------------------------- */
+  var listEl = document.getElementById('career-listings');
+  var roleSelect = document.getElementById('jobId');
+  if (listEl || roleSelect) {
+    var TYPE = { 'full-time': 'Full-time', 'part-time': 'Part-time', contract: 'Contract', commission: 'Commission-based' };
+    var md = function (t) {
+      return esc(t).split(/\n{2,}/).map(function (p) {
+        p = p.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        return '<p class="mt-2">' + p.replace(/\n/g, '<br>') + '</p>';
+      }).join('');
+    };
+    fetch(ADMIN_API + '/careers').then(function (r) { return r.json(); }).then(function (d) {
+      var jobs = (d && d.items) || [];
+      if (roleSelect) {
+        roleSelect.innerHTML = '<option value="">Choose a role</option>' + jobs.map(function (j) { return '<option value="' + esc(j.id) + '">' + esc(j.title) + '</option>'; }).join('') + '<option value="General application">General application</option>';
+      }
+      if (!listEl) return;
+      if (!jobs.length) {
+        listEl.innerHTML = '<div class="card" style="padding:2rem;text-align:center;"><h3>No open roles right now.</h3><p class="mt-2">Send a general application below and we will reach out when something fits.</p></div>';
+        return;
+      }
+      listEl.innerHTML = jobs.map(function (j) {
+        var tags = [j.department, j.location, TYPE[j.employment_type] || j.employment_type, j.experience, j.salary_range].filter(Boolean)
+          .map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join(' ');
+        var req = (j.requirements || []).length ? '<h4 class="mt-3" style="font-size:.95rem;">What you need</h4><ul class="includes-list mt-2">' + j.requirements.map(function (r) { return '<li>' + esc(r) + '</li>'; }).join('') + '</ul>' : '';
+        return '<details class="card job-card mt-3"><summary><span class="job-card__title">' + esc(j.title) + '</span><span class="job-card__tags">' + tags + '</span></summary>' +
+          '<div class="job-card__body">' + md(j.description || '') + req +
+          '<a href="#apply" class="btn btn--primary mt-3" data-apply="' + esc(j.id) + '">Apply for this role</a></div></details>';
+      }).join('');
+      var first = listEl.querySelector('details'); if (first) first.open = true;
+      listEl.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-apply]');
+        if (b && roleSelect) roleSelect.value = b.getAttribute('data-apply');
+      });
+    }).catch(function () {
+      if (listEl) listEl.innerHTML = '<div class="card" style="padding:2rem;text-align:center;"><h3>We could not load the open roles.</h3><p class="mt-2">You can still apply below, or email <a href="mailto:sales@qivalabs.com">sales@qivalabs.com</a>.</p></div>';
+    });
+  }
 
   /* ---- Current year in footer -------------------------------------------- */
   document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });

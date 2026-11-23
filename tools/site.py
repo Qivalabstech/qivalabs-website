@@ -14,7 +14,7 @@ import markdown
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = 'https://www.qivalabs.com'
 TODAY = datetime.date.today().isoformat()
-CSS_V = '20261123c'
+CSS_V = '20261123d'
 EMAIL = 'sales@qivalabs.com'
 PHONE = '+91 72318 73730'
 
@@ -620,6 +620,7 @@ GLOBAL_TITLES = {
     '/services/maintenance-amc': ('Website and App Maintenance Plans | QivaLabs', 'Monthly maintenance plans for websites, apps and software: updates, backups, security patches, monitoring and small changes from the team that knows your code.'),
     '/services': ('31 Software, App, Web and AI Development Services | QivaLabs', 'All QivaLabs services: software, mobile apps, websites, AI agents and automation, ERP and CRM, cloud, security and support for businesses in the USA, UK, Australia, Europe and the UAE.'),
     '/about': ('About QivaLabs | Software, App and AI Development Company', 'QivaLabs LLP is a software, app and AI development company based in India, working with startups and businesses in the USA, UK, Australia, Europe and the UAE.'),
+    '/career': ('Careers at QivaLabs | Engineering, Design and Sales Roles', 'Open roles at QivaLabs: software engineering, design, AI and sales roles, remote-friendly from Udaipur, India, working with clients in the USA, UK, Australia, Europe and the UAE.'),
     '/contact': ('Contact QivaLabs | Get a Software, App or AI Quote in 48 Hours', 'Tell QivaLabs what you want to build. Email sales@qivalabs.com or WhatsApp +91 72318 73730. Calls in US, UK, European, Australian and UAE working hours.'),
 }
 

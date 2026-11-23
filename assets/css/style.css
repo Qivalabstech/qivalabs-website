@@ -257,7 +257,7 @@ a.card:hover, .card--hover:hover, .card.service-item:hover, .card.portfolio-item
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--lime); box-shadow: 4px 4px 0 var(--pink); }
 .field textarea { min-height: 140px; resize: vertical; }
 .form-status { padding: .9rem 1rem; border-radius: 10px; margin-bottom: 1rem; font-weight: 600; border: 2px solid var(--lime); background: rgba(198,255,61,.08); color: var(--lime); }
-.form-status.is-error { border-color: var(--pink); background: rgba(255,61,154,.1); color: var(--pink); }
+.form-status.is-error, .form-status.form-status--error { border-color: var(--pink); background: rgba(255,61,154,.1); color: var(--pink); }
 .form-note { font-size: .85rem; color: var(--muted); margin-top: .8rem; }
 
 /* ---------- marquee ---------- */
@@ -570,3 +570,17 @@ img, video, canvas, iframe { max-width: 100%; }
   h1 { font-size: clamp(2rem, 8.6vw, 2.8rem); }
   .container.grid[style*="2fr 3fr"] > :last-child { order: -1; }
 }
+
+/* ---------------------------------------------------------------- admin-driven bits */
+.announce { background: var(--lime); color: #0B0B12; font-size: .9rem; font-weight: 600; position: relative; z-index: 61; }
+.announce__in { display: flex; align-items: center; justify-content: center; gap: .6rem; min-height: 40px; padding-top: .45rem; padding-bottom: .45rem; text-align: center; flex-wrap: wrap; padding-right: 2.5rem; }
+.announce a { color: #0B0B12; text-decoration: underline; font-weight: 800; }
+.announce__x { position: absolute; right: .6rem; top: 50%; transform: translateY(-50%); background: none; border: 0; font-size: 1.4rem; line-height: 1; cursor: pointer; color: #0B0B12; width: 36px; height: 36px; }
+.hiring-dot { display: inline-block; font-size: .62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; background: var(--pink); color: #fff; border-radius: 99px; padding: .1rem .45rem; margin-left: .3rem; vertical-align: middle; }
+.job-card summary { cursor: pointer; list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+.job-card summary::-webkit-details-marker { display: none; }
+.job-card__title { font-family: var(--font-heading, inherit); font-weight: 800; font-size: 1.15rem; color: var(--text, #F4F4F0); }
+.job-card__tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+.job-card__body { margin-top: 1rem; border-top: 1px solid rgba(255,255,255,.08); padding-top: 1rem; }
+.job-card[open] summary .job-card__title { color: var(--lime); }
+.form-status a { color: inherit; text-decoration: underline; font-weight: 800; }
