@@ -14,7 +14,7 @@ import markdown
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = 'https://www.qivalabs.com'
 TODAY = datetime.date.today().isoformat()
-CSS_V = '20261123'
+CSS_V = '20261123b'
 EMAIL = 'sales@qivalabs.com'
 PHONE = '+91 72318 73730'
 
