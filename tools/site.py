@@ -14,7 +14,7 @@ import markdown
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = 'https://www.qivalabs.com'
 TODAY = datetime.date.today().isoformat()
-CSS_V = '20261123d'
+CSS_V = '20261125b'
 EMAIL = 'sales@qivalabs.com'
 PHONE = '+91 72318 73730'
 
@@ -51,7 +51,7 @@ def header(active):
   <header class="site-header" data-header>
     <div class="container">
       <a href="/" class="brand" aria-label="QivaLabs home">
-        <span class="brand__mark"><img src="/assets/img/qiva-mark.png" alt="" width="24" height="26"></span><span class="brand__word">Qiva<span class="accent">Labs</span></span>
+        <img src="/assets/img/qivalabs-logo.svg" alt="QivaLabs" width="701" height="150">
       </a>
       <nav class="nav-links" aria-label="Primary">
         {links}
@@ -83,7 +83,7 @@ def footer(cta=True):
       </div>
       <div class="footer-grid">
         <div>
-          <a href="/" class="brand"><span class="brand__mark"><img src="/assets/img/qiva-mark.png" alt="" width="24" height="26"></span><span class="brand__word">Qiva<span class="accent">Labs</span></span></a>
+          <a href="/" class="brand"><img src="/assets/img/qivalabs-logo.svg" alt="QivaLabs" width="701" height="150"></a>
           <p class="mt-3" style="max-width:34ch;font-size:.95rem;">Software, app, website and AI development company. Based in Udaipur, India, building for startups and businesses in the USA, UK, Australia, Europe and the UAE.</p>
           <div class="social-row">
             <a href="https://www.instagram.com/qivalabs.ai/" aria-label="Instagram" rel="noopener"><i class="ph-bold ph-instagram-logo" aria-hidden="true"></i></a>
@@ -109,7 +109,7 @@ def footer(cta=True):
   </footer>'''
 
 ORG = {"@context": "https://schema.org", "@type": "ProfessionalService", "@id": SITE + "/#org", "name": "QivaLabs LLP", "alternateName": "QivaLabs", "url": SITE + "/",
-       "logo": SITE + "/assets/img/logo.svg", "image": SITE + "/assets/img/og-image.png", "telephone": PHONE, "email": EMAIL,
+       "logo": SITE + "/assets/img/logo-1024.png", "image": SITE + "/assets/img/og-image.png", "telephone": PHONE, "email": EMAIL,
        "address": {"@type": "PostalAddress", "addressLocality": "Udaipur", "addressRegion": "Rajasthan", "postalCode": "313001", "addressCountry": "IN"},
        "areaServed": [{"@type": "Country", "name": n} for n in ["United States", "United Kingdom", "Australia", "United Arab Emirates", "Germany", "Netherlands", "Ireland", "France", "India"]], "priceRange": "$$",
        "sameAs": ["https://www.linkedin.com/company/qivalabs", "https://www.instagram.com/qivalabs.ai/", "https://twitter.com/qivalabs"],
@@ -129,7 +129,10 @@ def page(url, title, desc, main, ld=(), og_image=None, robots='index, follow', o
   <link rel="canonical" href="{canon}">
   <meta name="robots" content="{robots}">
   <meta name="theme-color" content="#0B0B12">
-  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v={CSS_V}">

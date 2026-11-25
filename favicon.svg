@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256"><rect width="256" height="256" rx="58" fill="#0B0B12"/><g transform="translate(48 48) scale(.8)"><defs><mask id="f"><rect width="200" height="200" fill="#fff"/><rect x="112" y="112" width="86" height="86" rx="26" fill="#000"/></mask></defs>
+<path fill="#C6FF3D" fill-rule="evenodd" mask="url(#f)" d="M68 8H122A58 58 0 0 1 180 66V120A58 58 0 0 1 122 178H68A58 58 0 0 1 10 120V66A58 58 0 0 1 68 8ZM84 56H106A26 26 0 0 1 132 82V104A26 26 0 0 1 106 130H84A26 26 0 0 1 58 104V82A26 26 0 0 1 84 56Z"/>
+<rect x="122" y="122" width="68" height="68" rx="20" fill="#FF3D9A"/></g></svg>

@@ -162,7 +162,7 @@ strong { color: var(--text); }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .brand { display: inline-flex; align-items: center; gap: .6rem; font-family: var(--font-heading); font-weight: 800; font-size: 1.12rem; letter-spacing: .02em; }
 .brand__mark { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 9px; background: var(--panel-2); border: 2px solid var(--lime); box-shadow: 3px 3px 0 var(--pink); font-size: 0; overflow: hidden; }
-.brand__mark img { width: 24px; height: auto; }
+.brand img { display: block; height: 38px; width: auto; }
 .brand__word { text-transform: uppercase; }
 .brand__word .accent { color: var(--lime); }
 .nav-links { display: flex; gap: .3rem; align-items: center; }
@@ -563,7 +563,7 @@ img, video, canvas, iframe { max-width: 100%; }
   .section-head { margin-bottom: 1.75rem; }
 }
 @media (max-width: 380px) {
-  .brand { font-size: .98rem; gap: .45rem; }
+  .brand img { height: 28px; }
   .hud-coins { padding-left: .5rem; padding-right: .5rem; }
 }
 @media (max-width: 640px) {
